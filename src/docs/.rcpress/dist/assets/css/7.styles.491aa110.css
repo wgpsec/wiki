@@ -1,0 +1,22 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.pic-plus {
+  margin-bottom: 20px;
+}
+.pic-plus span {
+  font-size: 30px;
+  color: #aaa;
+  margin: 0 20px;
+  vertical-align: sub;
+}
+@media only screen and (max-width: 480px) {
+  .pic-plus span {
+    margin: 0 5px !important;
+  }
+  .pic-plus img {
+    width: calc(25% - 25px);
+  }
+}
+

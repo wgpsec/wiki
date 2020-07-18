@@ -1,0 +1,17 @@
+{
+    "name": "wgpsec-wiki",
+    "version": "0.0.1",
+    "private": true,
+    "keywords": [],
+    "author": "wgpsec",
+    "scripts": {
+      "dev": "rcpress dev",
+      "generate": "rcpress generate",
+      "build": "rcpress build",
+      "serve": "rcpress serve"
+    },
+    "devDependencies": {
+      "@rcpress/cli": "^0.1.9",
+      "cross-env": "5.2.0"
+    }
+  }
