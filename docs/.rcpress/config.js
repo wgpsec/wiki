@@ -40,8 +40,8 @@ module.exports = {
   themeConfig: {
     // repo: 'wgpsec/xxx', // 假定是 GitHub. 同时也可以是一个完整的 Gitee URL,默认为Gihub仓库，支持Github,Bitbucket,Gitee。
     docsRepo: 'wgpsec/WgpsecWiki', // 自定义文档仓库，默认和docsRepo的值一致
-    docsRelativeDir: 'src/docs', // 项目根目录到文档的相对地址，默认为''
-    docsDir: 'src/docs', // 文档目录 默认为docs
+    docsRelativeDir: 'docs', // 项目根目录到文档的相对地址，默认为''
+    docsDir: 'docs', // 文档目录 默认为docs
     docsBranch: 'master', // 文档所在git分支
     editLinks: false, // 默认是 false, 设置为 true 来启用
     editLinkText: '帮助我们改善此页面！', // 默认为 "Edit this page"
