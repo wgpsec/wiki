@@ -2,8 +2,7 @@ import './introduction.less'
 
 # 关于知识库
 
-- 狼组安全团队公开知识库是由狼组安全团队成员以及社区使用者共同维护的网络安全知识库。
-- 知识库的前端基于 [Ant Design Vue](https://github.com/vueComponent/ant-design-vue) 构建， 知识库内容使用 [Markdown](https://www.runoob.com/markdown/md-tutorial.html) 进行撰写。
+- 狼组安全团队公开知识库致力于成为一个免费开放且持续更新的网络安全知识库知识整合站点，由狼组安全团队成员以及社区使用者共同进行维护。
 
 import ImgWidthBase from '@components/ImgWidthBase'
 
@@ -13,11 +12,9 @@ import ImgWidthBase from '@components/ImgWidthBase'
   <ImgWidthBase url="markdown-icon.svg" height={120}/> 
 </div>
 
-## 特点
-
-- 非常方便，参考前辈 [零组资料文库](https://wiki.0-sec.org)，支持实时搜索展示内容。
-- 开放且共享，所有内容无需进行账号登录等繁琐操作，所有内容全部开放供查阅。使用者可自行投稿，帮助知识库进步
-- ~~中英国际化(?)~~
+- 本项目受 [零组资料文库](https://wiki.0-sec.org) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
+- 在这里，知识开放且共享，所有内容全部开放供查阅。如果对本项目感兴趣，你也可自行投稿，一起来为知识库添砖加瓦。
+- 之后我们还会增加国际化内容，欢迎有能力的小伙伴加入翻译计划。
 
 ## 面向人群
 
