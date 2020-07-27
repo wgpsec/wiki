@@ -21,4 +21,4 @@ yarn run generate 或者 yarn run build
 ```
 
 # 编写规范
- - none
+ - 知识库相关文件命名全小写，如果有多个单词请使用 `-` 进行拼接。e.g：`sql-injection`
