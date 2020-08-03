@@ -92,7 +92,7 @@ module.exports = {
             {
               title: 'Web安全',
               collapsable: false,
-              children: ['','sql-injection','xss','expression-language-injection']
+              children: ['','sql-injection','xss','expression-language-injection','xxe','source-leaked','code-injection','csrf-ssrf','file-download','file-includes','file-upload','jwt-cookie','logical-vulns','phpsec','same-origin-policy','session-sec']
               // children: [
               //   {
               //     title: 'SQL注入',
