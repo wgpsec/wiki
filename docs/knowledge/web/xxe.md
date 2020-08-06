@@ -111,11 +111,11 @@ DTD文件(evil.dtd)内容：
 
 另外，不同程序支持的协议不一样
 
- ![](/_post_pic/xxe/xml1.png) 
+ ![](/post-pic/xxe/xml1.png) 
 
  上图是默认支持协议，还可以支持其他，如PHP支持的扩展协议有
 
- ![](/_post_pic/xxe/xml2.png) 
+ ![](/post-pic/xxe/xml2.png) 
 
 # 发现XXE漏洞
 
@@ -127,17 +127,17 @@ DTD文件(evil.dtd)内容：
 
 请求：
 
-![request](/_post_pic/xxe/xmlr1.png)
+![request](/post-pic/xxe/xmlr1.png)
 
 响应：
 
-![Response](/_post_pic/xxe/xmlp1.png)
+![Response](/post-pic/xxe/xmlp1.png)
 
 应用程序正在解析XML内容，接受特定的输入，然后将其呈现给用户
 
 修改请求的XML内容，重放
 
-![](/_post_pic/xxe/xmlre1.png)
+![](/post-pic/xxe/xmlre1.png)
 
 我们在上面的请求中定义了一个名为wintrysec，值为 'wintrysec666' 的实体
 
@@ -159,7 +159,7 @@ DTD文件(evil.dtd)内容：
 
 重放， 成功读取`/etc/passwd`文件 
 
- ![](/_post_pic/xxe/xmlre2.png) 
+ ![](/post-pic/xxe/xmlre2.png) 
 
 # 防御XXE攻击
 
