@@ -11,7 +11,7 @@
       "serve": "rcpress serve"
     },
     "devDependencies": {
-      "@rcpress/cli": "^0.1.9",
+      "@rcpress/cli": "^0.2.7",
       "cross-env": "5.2.0"
     }
   }
