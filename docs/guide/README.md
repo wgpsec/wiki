@@ -25,4 +25,4 @@ import ImgWidthBase from '@components/ImgWidthBase'
 
 - QQ群：[点我加群](https://jq.qq.com/?_wv=1027&k=5uD8wCn)
 
-- 微信公众号 ![WgpSec狼组安全团队](README/wechat.png)
+- 微信公众号 ![WgpSec狼组安全团队](/wechat.png)
