@@ -63,6 +63,7 @@ module.exports = {
             items: [
               { text: 'Web安全', link: '/knowledge/web/' },
               { text: 'CTF', link: '/knowledge/ctf/' },
+              { text: '红蓝对抗', link: '/knowledge/hw/' },
             ],
             important: true
           },
@@ -103,6 +104,13 @@ module.exports = {
               //     children: ['xss']
               //   }
               // ]
+            },
+          ],
+          '/knowledge/hw/': [
+            {
+              title: '红蓝对抗',
+              collapsable: false,
+              children: ['','boundary-info','checklist','net-proxy','webshell','cc','os-shell','to-root','lan-info','ntml-hash','domain-pentest','del-log']
             },
           ],
           '/knowledge/ctf/': [
