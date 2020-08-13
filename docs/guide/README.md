@@ -21,6 +21,8 @@ import ImgWidthBase from '@components/ImgWidthBase'
 - 安全从业者
 - 热爱网络安全的学习者
 
-## 官方QQ群
+## 官方交流群
 
 - QQ群：[点我加群](https://jq.qq.com/?_wv=1027&k=5uD8wCn)
+
+- 微信公众号 ![WgpSec狼组安全团队](README/wechat.png)
