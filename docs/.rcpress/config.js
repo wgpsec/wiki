@@ -110,7 +110,8 @@ module.exports = {
             {
               title: '红蓝对抗',
               collapsable: false,
-              children: ['','boundary-info','checklist','net-proxy','webshell','cc','os-shell','to-root','lan-info','ntml-hash','domain-pentest','del-log']
+              children: ['','boundary-info','checklist','net-proxy','webshell','cc','os-shell','to-root','lan-info','ntml-hash','domain-pentest','del-log',
+              'defense-assets','linux-baselinesec','windows-baselinesec','monitor-read','emergency-response','back-counter']
             },
           ],
           '/knowledge/ctf/': [
