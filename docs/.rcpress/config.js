@@ -122,6 +122,13 @@ module.exports = {
               children: ['']
             },
           ],
+          '/knowledge/code-audit/': [
+            {
+              title: '代码审计',
+              collapsable: false,
+              children: ['','php-code-audit']
+            },
+          ],
         }
       },
       '/en-US': {

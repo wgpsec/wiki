@@ -25,7 +25,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-
     - run: yarn install
-    - run: yarn fix-memory-limit
     - run: yarn run generate
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
