@@ -9,7 +9,7 @@
       "generate": "rcpress generate",
       "build": "rcpress build",
       "serve": "rcpress serve",
-      "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit"
+      "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
     },
     "devDependencies": {
       "@rcpress/cli": "^0.2.7",
