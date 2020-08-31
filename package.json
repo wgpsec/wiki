@@ -8,10 +8,12 @@
       "dev": "rcpress dev",
       "generate": "rcpress generate",
       "build": "rcpress build",
-      "serve": "rcpress serve"
+      "serve": "rcpress serve",
+      "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
     },
     "devDependencies": {
       "@rcpress/cli": "^0.2.7",
-      "cross-env": "5.2.0"
+      "cross-env": "5.2.0",
+      "increase-memory-limit": "^1.0.6"
     }
   }
