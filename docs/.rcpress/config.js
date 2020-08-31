@@ -64,6 +64,7 @@ module.exports = {
               { text: 'Web安全', link: '/knowledge/web/' },
               { text: 'CTF', link: '/knowledge/ctf/' },
               { text: '红蓝对抗', link: '/knowledge/hw/' },
+              { text: '代码审计', link: '/knowledge/code-audit/' },
             ],
             important: true
           },
