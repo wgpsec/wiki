@@ -119,7 +119,7 @@ module.exports = {
             {
               title: 'CTF',
               collapsable: false,
-              children: ['']
+              children: ['RSA','Volatility','deserialize-byte-escape','js-prototype-chain-pollution','ssrf-gopher','xxe-bypass-payload']
             },
           ],
           '/knowledge/code-audit/': [
