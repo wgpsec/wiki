@@ -43,6 +43,7 @@ python3 oneforall.py --target example.com --port=80,443,8080,8009,7001 --valid=T
 
 历史DNS记录： https://rapiddns.io/subdomain
 
+
 # CDN绕过（IP资产收集）
 
 **确认CDN**
@@ -53,6 +54,8 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 
 国外访问： https://asm.ca.com/en/ping.php （针对小厂CDN，国外访问可能获得真实IP）
 
+
+
 **绕过CDN**
 
 注册查看邮件原文
@@ -60,6 +63,10 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 用空间搜索引擎（**FOFA**：`title="公司名"`等特征 ）
 
 通过查找到的子域名，辅助查找真实IP
+
+邮件服务器（利用邮件服务器主动发邮件给自己，主动发起的连接不会用CDN）
+
+
 
 **配置不当**
 
@@ -70,6 +77,26 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 > 得知真实IP后，可以改host访问
 >
 > 在这里https://www.ipip.net/ip.html 查询IP归属地，和目标公司匹配一下。
+
+
+
+**CDN查询工具**
+
+[https://get-site-ip.com/](https://get-site-ip.com/)<br />
+
+
+
+***Github Tools***
+
+[https://github.com/Tai7sy/fuckcdn](https://github.com/Tai7sy/fuckcdn)<br />[https://github.com/boy-hack/w8fuckcdn](https://github.com/boy-hack/w8fuckcdn)<br />
+
+
+**绕过文章**
+
+[https://opendatasecurity.io/how-to-bypass-cdn/](https://opendatasecurity.io/how-to-bypass-cdn/)<br />[https://topic.alibabacloud.com/a/11-ways-to-bypass-cdn-to-find-real-ip_8_8_31062138.html](https://topic.alibabacloud.com/a/11-ways-to-bypass-cdn-to-find-real-ip_8_8_31062138.html)<br />
+
+
+
 
 # C段/旁站
 
