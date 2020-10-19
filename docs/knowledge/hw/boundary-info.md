@@ -43,6 +43,16 @@ python3 oneforall.py --target example.com --port=80,443,8080,8009,7001 --valid=T
 
 历史DNS记录： https://rapiddns.io/subdomain
 
+**DNS枚举**
+
+dnsenum:
+   默认会对该域做暴力枚举。枚举结果 依赖于字典的质量。
+
+theHarvester:
+   theHarvester is a very simple, yet effective tool designed to be used in the early<br />stages of a penetration test. Use it for open source intelligence gathering and<br />helping to determine a company's external threat landscape on the internet. The<br />tool gathers emails, names, subdomains, IPs, and URLs using multiple public data<br />sources that include:<br />passive mode:<br />baidu, bing, bingapi, censys, crtsh, dogpile,<br />google, google-certificates, googleCSE, googleplus, google-profiles,<br />hunter, linkedin, netcraft, pgp, threatcrowd,<br />twitter, vhost, virustotal, yahoo,<br />Acitve mode:<br />DNS brute force: dictionary brute force enumeration
+
+在线枚举:
+   https://phpinfo.me/domain
 
 # CDN绕过（IP资产收集）
 
@@ -128,7 +138,18 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 
 > CMS框架、OS、脚本语言、中间件容器	（使用的版本是否存在历史漏洞）
 
-相关工具：wappalyzer、云悉指纹等
+
+***在线CMS识别工具***
+
+[https://www.yunsee.cn/](https://www.yunsee.cn/)<br />[http://whatweb.bugscaner.com/look/](http://whatweb.bugscaner.com/look/)<br />[https://www.whatweb.net/](https://www.whatweb.net/)<br />
+
+
+***本地识别工具***
+
+御剑Web指纹识别工具<br />轻量web指纹识别工具<br />WebRobo<br />椰树<br />[https://github.com/urbanadventurer/WhatWeb](https://github.com/urbanadventurer/WhatWeb)<br />[https://github.com/AliasIO/Wappalyzer](https://github.com/AliasIO/Wappalyzer)<br />[https://github.com/iniqua/plecost](https://github.com/iniqua/plecost)<br />[https://github.com/w-digital-scanner/w11scan](https://github.com/w-digital-scanner/w11scan)<br />
+<br />[http://521.li/post/670.html](http://521.li/post/670.html)
+
+
 
 # 网站后台/敏感信息
 
