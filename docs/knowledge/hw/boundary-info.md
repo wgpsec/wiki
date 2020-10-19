@@ -146,9 +146,39 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 
 ***本地识别工具***
 
-御剑Web指纹识别工具<br />轻量web指纹识别工具<br />WebRobo<br />椰树<br />[https://github.com/urbanadventurer/WhatWeb](https://github.com/urbanadventurer/WhatWeb)<br />[https://github.com/AliasIO/Wappalyzer](https://github.com/AliasIO/Wappalyzer)<br />[https://github.com/iniqua/plecost](https://github.com/iniqua/plecost)<br />[https://github.com/w-digital-scanner/w11scan](https://github.com/w-digital-scanner/w11scan)<br />
-<br />[http://521.li/post/670.html](http://521.li/post/670.html)
+御剑Web指纹识别工具<br />轻量web指纹识别工具<br />WebRobo<br />椰树<br />[https://github.com/urbanadventurer/WhatWeb](https://github.com/urbanadventurer/WhatWeb)<br />[https://github.com/AliasIO/Wappalyzer](https://github.com/AliasIO/Wappalyzer)<br />[https://github.com/iniqua/plecost](https://github.com/iniqua/plecost)<br />[https://github.com/w-digital-scanner/w11scan](https://github.com/w-digital-scanner/w11scan)<br />[http://521.li/post/670.html](http://521.li/post/670.html)
 
+# GPS
+
+个人/企业公司GPS信息泄露
+不论是员工个人或者企业泄露的公司照片都可能泄露公司的GPS信息，可以利用exiftool读取照片里面的隐藏信息，但是有些社交平台发布的照片会清洗掉很多敏感信息，但是QQ微信直接收到的图片都可以。
+```
+root@kali:/home/kali/桌面# exiftool 1.jpg 
+ExifTool Version Number         : 12.05
+File Name                       : 1.jpg
+Directory                       : .
+File Size                       : 53 kB
+File Modification Date/Time     : 2020:09:15 10:54:31+08:00
+File Access Date/Time           : 2020:10:19 12:55:48+08:00
+File Inode Change Date/Time     : 2020:10:19 12:55:47+08:00
+File Permissions                : rwxrw-rw-
+File Type                       : JPEG
+File Type Extension             : jpg
+MIME Type                       : image/jpeg
+JFIF Version                    : 1.01
+Resolution Unit                 : inches
+X Resolution                    : 120
+Y Resolution                    : 120
+Image Width                     : 1080
+Image Height                    : 357
+Encoding Process                : Baseline DCT, Huffman coding
+Bits Per Sample                 : 8
+Color Components                : 3
+Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
+Image Size                      : 1080x357
+Megapixels                      : 0.386
+root@kali:/home/kali/桌面# 
+```
 
 
 # 网站后台/敏感信息
