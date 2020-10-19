@@ -35,6 +35,10 @@ title: 【红队】权限维持之--权限提升
 
 ## 内核漏洞提权
 
+**Windows 内核漏洞EXP下载库**
+[https://github.com/SecWiki/windows-kernel-exploits](https://github.com/SecWiki/windows-kernel-exploits)<br />
+
+
 | 漏洞代号 | 补丁编号  | 适用平台                               | 用途        |
 | :------- | :-------- | :------------------------------------- | :---------- |
 | MS14-058 | KB3000061 | 03，08，12，Win7                       | 本地提权    |
