@@ -65,6 +65,7 @@ module.exports = {
               { text: 'CTF', link: '/knowledge/ctf/' },
               { text: '红蓝对抗', link: '/knowledge/hw/' },
               { text: '代码审计', link: '/knowledge/code-audit/' },
+              { text: '内网系列', link: '/knowledge/intranet/' },
             ],
             important: true
           },
