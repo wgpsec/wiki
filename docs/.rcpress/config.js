@@ -129,6 +129,13 @@ module.exports = {
               children: ['','php-code-audit']
             },
           ],
+          '/knowledge/intranet/': [
+            {
+              title: '内网系列',
+              collapsable: false,
+              children: ['','Cobalt-Strike']
+            },
+          ],
         }
       },
       '/en-US': {

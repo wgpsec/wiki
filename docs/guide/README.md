@@ -2,7 +2,7 @@ import './introduction.less'
 
 # 关于知识库
 
-- 狼组安全团队公开知识库致力于成为一个免费开放且持续更新的网络安全知识库知识整合站点，由狼组安全团队成员以及社区使用者共同进行维护。
+- WgpSec狼组安全团队公开知识库致力于成为一个免费开放且持续更新的网络安全知识库知识整合站点，由WgpSec狼组安全团队成员以及社区使用者共同进行维护。
 
 import ImgWidthBase from '@components/ImgWidthBase'
 
@@ -23,6 +23,7 @@ import ImgWidthBase from '@components/ImgWidthBase'
 
 ## 官方交流群
 
-- QQ群：[点我加群](https://jq.qq.com/?_wv=1027&k=5uD8wCn)
-
+- 官网：www.wgpsec.org
+- QQ群：一群：431598862（已满）二群：480766440
+- 微信群：关注微信公众号回复加群，按照提示进行操作
 - 微信公众号 ![WgpSec狼组安全团队](/wechat.png)
