@@ -1,3 +1,6 @@
+---
+title: 表达式注入
+---
 # 表达式注入
 
 > 2013年4月15日Expression Language Injection词条在OWASP上被创建，而这个词的最早出现可以追溯到2012年12月的《Remote-Code-with-Expression-Language-Injection》一文，在这个paper中第一次提到了这个名词。

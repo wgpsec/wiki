@@ -1,4 +1,7 @@
-# XXS绕过Payload
+---
+title: XXE绕过Payload
+---
+# XXE绕过Payload
 
 添加一组xxe绕过的payload
 

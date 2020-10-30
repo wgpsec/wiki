@@ -1,17 +1,16 @@
 {
-    "name": "wgpsec-wiki",
-    "version": "0.0.1",
-    "private": true,
-    "keywords": [],
-    "author": "wgpsec",
-    "scripts": {
-      "dev": "rcpress dev",
-      "generate": "rcpress generate",
-      "build": "rcpress build",
-      "serve": "rcpress serve"
-    },
-    "devDependencies": {
-      "@rcpress/cli": "^0.2.7",
-      "cross-env": "5.2.0"
-    }
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "core-js": "^2.6.11",
+    "vuepress": "^1.5.2",
+    "vuepress-plugin-sitemap": "^2.3.1"
+  },
+  "dependencies": {
+    "vuepress-theme-antdocs": "^1.2.0"
   }
+}

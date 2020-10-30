@@ -43,17 +43,6 @@ python3 oneforall.py --target example.com --port=80,443,8080,8009,7001 --valid=T
 
 历史DNS记录： https://rapiddns.io/subdomain
 
-**DNS枚举**
-
-dnsenum:
-   默认会对该域做暴力枚举。枚举结果 依赖于字典的质量。
-
-theHarvester:
-   theHarvester is a very simple, yet effective tool designed to be used in the early<br />stages of a penetration test. Use it for open source intelligence gathering and<br />helping to determine a company's external threat landscape on the internet. The<br />tool gathers emails, names, subdomains, IPs, and URLs using multiple public data<br />sources that include:<br />passive mode:<br />baidu, bing, bingapi, censys, crtsh, dogpile,<br />google, google-certificates, googleCSE, googleplus, google-profiles,<br />hunter, linkedin, netcraft, pgp, threatcrowd,<br />twitter, vhost, virustotal, yahoo,<br />Acitve mode:<br />DNS brute force: dictionary brute force enumeration
-
-在线枚举:
-   https://phpinfo.me/domain
-
 # CDN绕过（IP资产收集）
 
 **确认CDN**
@@ -64,8 +53,6 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 
 国外访问： https://asm.ca.com/en/ping.php （针对小厂CDN，国外访问可能获得真实IP）
 
-
-
 **绕过CDN**
 
 注册查看邮件原文
@@ -73,10 +60,6 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 用空间搜索引擎（**FOFA**：`title="公司名"`等特征 ）
 
 通过查找到的子域名，辅助查找真实IP
-
-邮件服务器（利用邮件服务器主动发邮件给自己，主动发起的连接不会用CDN）
-
-
 
 **配置不当**
 
@@ -87,26 +70,6 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 > 得知真实IP后，可以改host访问
 >
 > 在这里https://www.ipip.net/ip.html 查询IP归属地，和目标公司匹配一下。
-
-
-
-**CDN查询工具**
-
-[https://get-site-ip.com/](https://get-site-ip.com/)<br />
-
-
-
-***Github Tools***
-
-[https://github.com/Tai7sy/fuckcdn](https://github.com/Tai7sy/fuckcdn)<br />[https://github.com/boy-hack/w8fuckcdn](https://github.com/boy-hack/w8fuckcdn)<br />
-
-
-**绕过文章**
-
-[https://opendatasecurity.io/how-to-bypass-cdn/](https://opendatasecurity.io/how-to-bypass-cdn/)<br />[https://topic.alibabacloud.com/a/11-ways-to-bypass-cdn-to-find-real-ip_8_8_31062138.html](https://topic.alibabacloud.com/a/11-ways-to-bypass-cdn-to-find-real-ip_8_8_31062138.html)<br />
-
-
-
 
 # C段/旁站
 
@@ -138,48 +101,7 @@ CMD-ping看回复（IP前的域名有无CDN或WAF）
 
 > CMS框架、OS、脚本语言、中间件容器	（使用的版本是否存在历史漏洞）
 
-
-***在线CMS识别工具***
-
-[https://www.yunsee.cn/](https://www.yunsee.cn/)<br />[http://whatweb.bugscaner.com/look/](http://whatweb.bugscaner.com/look/)<br />[https://www.whatweb.net/](https://www.whatweb.net/)<br />
-
-
-***本地识别工具***
-
-御剑Web指纹识别工具<br />轻量web指纹识别工具<br />WebRobo<br />椰树<br />[https://github.com/urbanadventurer/WhatWeb](https://github.com/urbanadventurer/WhatWeb)<br />[https://github.com/AliasIO/Wappalyzer](https://github.com/AliasIO/Wappalyzer)<br />[https://github.com/iniqua/plecost](https://github.com/iniqua/plecost)<br />[https://github.com/w-digital-scanner/w11scan](https://github.com/w-digital-scanner/w11scan)<br />[http://521.li/post/670.html](http://521.li/post/670.html)
-
-# GPS
-
-个人/企业公司GPS信息泄露
-不论是员工个人或者企业泄露的公司照片都可能泄露公司的GPS信息，可以利用exiftool读取照片里面的隐藏信息，但是有些社交平台发布的照片会清洗掉很多敏感信息，但是QQ微信直接收到的图片都可以。
-```
-root@kali:/home/kali/桌面# exiftool 1.jpg 
-ExifTool Version Number         : 12.05
-File Name                       : 1.jpg
-Directory                       : .
-File Size                       : 53 kB
-File Modification Date/Time     : 2020:09:15 10:54:31+08:00
-File Access Date/Time           : 2020:10:19 12:55:48+08:00
-File Inode Change Date/Time     : 2020:10:19 12:55:47+08:00
-File Permissions                : rwxrw-rw-
-File Type                       : JPEG
-File Type Extension             : jpg
-MIME Type                       : image/jpeg
-JFIF Version                    : 1.01
-Resolution Unit                 : inches
-X Resolution                    : 120
-Y Resolution                    : 120
-Image Width                     : 1080
-Image Height                    : 357
-Encoding Process                : Baseline DCT, Huffman coding
-Bits Per Sample                 : 8
-Color Components                : 3
-Y Cb Cr Sub Sampling            : YCbCr4:2:0 (2 2)
-Image Size                      : 1080x357
-Megapixels                      : 0.386
-root@kali:/home/kali/桌面# 
-```
-
+相关工具：wappalyzer、云悉指纹等
 
 # 网站后台/敏感信息
 

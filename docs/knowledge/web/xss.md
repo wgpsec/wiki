@@ -1,20 +1,7 @@
+---
+title: XSS跨站脚本漏洞
+---
 # XSS跨站脚本漏洞
-
-XSS（Cross Site Script，跨站脚本）缩写为CSS，但这会与层叠样式表（Cascading Style Sheets，CSS）的缩写混淆。因此，跨站脚本攻击缩写为XSS。
-
-## 本质
-
-客户端代码注入漏洞，通常注入代码是js脚本
-
-## 危害
-
-1. 盗取各类用户账号，如机器登录账号、用户网银账号、各类管理员账号
-2. 控制企业数据，包括读取、篡改、添加、删除企业敏感数据的能力
-3. 盗窃企业重要的具有商业价值的资料
-4. 非法转账
-5. 强制发送电子邮件
-6. 网站挂马
-7. 控制受害者机器向其它网站发起攻击
 
 ## XSS跨站原理
 
@@ -28,41 +15,19 @@ XSS（Cross Site Script，跨站脚本）缩写为CSS，但这会与层叠样式
 
 ## 分类
 
-### 反射型 （非持久型）
+#### 反射型
 
-非持久型XSS攻击是一次性的，仅对单次的页面访问产生影响。非持久型XSS攻击要求用户访问一个被攻击者篡改后的链接来诱使客户点击，比如这样的一段链接：`www.wgpsec.org/?params=<script>alert(/xss/)</script>`，用户访问该链接时，被植入的攻击脚本被用户浏览器执行，从而达到攻击的目的。
+出现在搜索栏，用户登录等地方，常用来窃取客户端的Cookie进行钓鱼欺骗。(需要用户去点击)
 
-**攻击步骤**
+想要窃取cookie要满足两个条件：
 
-1. 攻击者构造出特殊的 URL，其中包含恶意代码。
-2. 用户打开带有恶意代码的 URL 时，网站服务端将恶意代码从 URL 中取出，拼接在 HTML 中返回给浏览器。
-3. 用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。
-4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。
+> 1.用户点击攻击者构造的URL
+>
+> 2.访问被攻击的应用服务(即存在xss的网站)
 
-该类型XSS常见于搜索、存在传参输出的地方。
+#### 存储型
 
-### 存储型 XSS
-
-这种类型的XSS，危害比前一种大得多。比如一个攻击者在用户名中包含了一段JavaScript代码，并且服务器没有正确进行过滤输出，那就会造成浏览这个页面的用户执行这段JavaScript代码。
-
-这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等。
-
-**攻击步骤**
-
-1. 攻击者将将恶意代码提交到目标网站的数据库中。
-2. 用户打开目标网站时，网站服务端将恶意代码从数据库取出，拼接在 HTML 中返回给浏览器。
-3. 用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。
-4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。
-
-**反射型 XSS 跟存储型 XSS 的区别**
-
-存储型 XSS 的恶意代码存在数据库里，反射型 XSS 的恶意代码存在 URL 里。
-
-反射型 XSS 漏洞常见于通过 URL 传递参数的功能，如网站搜索、跳转等。由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。
-
-POST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛刻（需要构造表单提交页面，并引导用户点击），所以非常少见。
-
-
+出现在留言、评论、博客日志等交互处，直接影响Web服务器自身安全
 
 #### DOM型
 
@@ -73,11 +38,6 @@ POST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛�
 > Dom型xss是通过url传入参数去控制触发的；
 >
 > Dom型返回页面源码中看不到输入的payload， 而是保存在浏览器的DOM中。
-
-这种类型则是利用非法输入来闭合对应的html标签。
-
-比如，有这样的一个a标签：`<a href='$var'></a>`
-乍看问题不大，可是当`$var的内容变为 'οnclick='alert(/xss/) //`，这段代码就会被执行。
 
 **假设应用程序返回的页面包含以下脚本：**
 
@@ -94,20 +54,7 @@ POST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛�
 
 并像服务器返回代码一样得以执行。
 
-**攻击步骤**
-
-1. 攻击者构造出特殊的 URL，其中包含恶意代码。
-2. 用户打开带有恶意代码的 URL。
-3. 用户浏览器接收到响应后解析执行，前端 JavaScript 取出 URL 中的恶意代码并执行。
-4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。
-
-**DOM型XSS 跟前两种 XSS 的区别**
-
-DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。
-
-**DOM型XSS 和 反射型 XSS 的区别**
-
-反射型XSS提交的数据会经过服务器，而DOM型XSS不会，这个的意思呢就是不论你后面加多少WAF都是无济于事的。
+DOM型与反射 型类似，都需要攻击者诱使用户点击专门设计的URL
 
 推荐阅读： [记一次从DOM型XSS到RCE过程](https://xz.aliyun.com/t/3919)
 
@@ -137,18 +84,6 @@ DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属�
 当利用基于DOM的XSS漏洞时，攻击有效载荷并不在服务器的响应中返回，而是保存在浏览器的DOM中，并可被客户端javascript访问。
 
 在这种情况下，以上基本验证无法发现XSS漏洞。
-
-简单来说，主要是以下过程。
-
-### 寻找可控点
-
-1. 找到可控点，比如一段搜索参数，在提交或输入参数后翻阅源代码 我们输入的源数据是否被原样输出
-2. 看可控点是否可以闭合标签，尝试单引号双引号方式输入特殊字符尝试是否过滤
-3. 尝试输入一些会让程序报错的语句 比如单个 `'` `"` `<` `>` 等
-4. 阅读代码找到可控点
-5. 找到可控点且可利用，但是有过滤，可尝试各种绕过方式去触发
-
-
 
 ## 查找反射型XSS
 
@@ -197,115 +132,6 @@ DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属�
 ```javascript
 javascript:alert(1);
 ```
-
-**例4**，输出点存在JS内且转义
-
-```php+HTML
-<!DOCTYPE html>
-<html>
-<head>
-	<title>XSS转义</title>
-</head>
-<body>
-	XSS
-<?php
-/**
- * Created by PhpStorm.
- * User: keac wu
- * Date: 2019/12/26 0012
- * Time: 15:53
- */
-
- $input= $_GET["xss"];
- echo htmlspecialchars("$input");
- ?>
-<script type="text/javascript">
-	var a='<?php echo htmlspecialchars("$input") ?>';
-	console.log(a)
-</script>
-
-</body>
-</html>
-```
-
-这种情况下，当我们直接输入 `<script></script>` 什么的HTML标签的时候会被直接转义
-
->  htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。
->
-> 预定义的字符是：
->
-> - & （和号）成为 &
-> - " （双引号）成为 "
-> - ' （单引号）成为 '
-> - < （小于）成为 <
-> - \> （大于）成为 >
-
-![sdf](https://www.loongten.com/2019/12/23/pentest-learn-xss/8.png)
-
-这种时候我们就要尝试，看看单引号 双引号会不会被过滤，最后看到是单引号不会被过滤，而且只有单个单引号的时候会报错。
-
-![sdf](https://www.loongten.com/2019/12/23/pentest-learn-xss/9.png)
-
-这种时候就可以利用了
-
-`';alert(1)//`
-
-
-
-![sdf](https://www.loongten.com/2019/12/23/pentest-learn-xss/10.png)
-
-![sdf](https://www.loongten.com/2019/12/23/pentest-learn-xss/11.png)
-
-**例5**，输出点存在JS内怎么触发
-
-```php+HTML
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	XSS 在函数情况情况下。。。<br>
-<?php
-/**
- * Created by PhpStorm.
- * User: keac wu
- * Date: 2019/12/26 0012
- * Time: 15:53
- */
-
- $input= $_GET["xss"];
- echo htmlspecialchars("$input");
-
- ?>
-  <input type="text" id="myInput" onclick="myFunction()">
-<script type="text/javascript">
-
-function myFunction() {
-    var a= '<?php  echo htmlspecialchars("$input") ?>';
-}
-
-</script>
-
-</body>
-</html>
-```
-
-当我们利用上一种方式也是可以触发弹窗，但是每次都需要去点一下文本框才能触发，在实战场景中比较鸡肋
-
-![sdf](https://www.loongten.com/2019/12/23/pentest-learn-xss/12.png)
-
-Payload
-
-```javascript
-'};alert(1); function a(){//
-```
-
-![sdf](https://www.loongten.com/2019/12/23/pentest-learn-xss/13.png)
-
-使用这个payload，可以直接弹窗
-
-我们首先用 `'`去截断了前面的字符串，然后拼接完整的函数，中间插入我们需要执行的代码:`alert(1);` 完成了这一步之后，因为源函数后面还有个`}`，我们需要自己写个函数去完善掉 `function a(){//` ，并且把最后的单引号和分号结束掉，那么在页面一打开我们的函数就会被执行。
 
 #### 脚本标签
 
@@ -459,55 +285,6 @@ document.write(z)
 <script>with(document)alert(cookie)</script>
 ```
 
-**没有过滤&和#**
-
-
-```在 HTML 属性中，会自动对实体字符进行转义。一个简单的比方。
-<img src="1" onerror="alert(1)">
-和
-<img src="1" onerror="alert&#x28;1&#x29;">
-
-是等效的
-
-pyload
-<img src="1" onerror="alert&#x28;1&#x29;">
-还可以将上面pyload进行url编码
-<img src="1" onerror="alert%26%23x28%3b1%26%23x29%3b">
-```
-
-**宽字节绕过**
-
-```利用前提<meta>标签中有如下内容
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-
-pyload
-<img src="1%c0%22 onerror="alert%26%23x28%3b1%26%23x29%3b">
-```
-
-***反斜线绕过***
-
-```
-需要能够传两个参数，一个用反斜杠过滤双引号，一个用来写入js代码
-location.href="127.0.0.1/?"+"ss=aaaa\"+"&from==1;alert(1);function/**/from(){}//
-```
-
-***换行符绕过***
-```只有在注释中输出内容才能使用
-示例：
-//这是注释
-//这是注释{参数}
-{参数}=alert(1)
-//这是注释
-//这是注释alert(1)
-在注释中无法执行
-使用%0a用来跳过单行注释{参数}=%0alert(1)
-//这是注释
-//这是注释
-alert(1)
-利用换行在第二行注释中换了行，导致单行注释//没有注释到alert(1)
-```
-
-
 ## 查找利用存储型XSS
 
 确定保存型XSS漏洞的过程与前面描述的确定反射型XSS漏洞的过程类似。 
@@ -573,10 +350,6 @@ window.setTimeout()
 ```
 
 片段技巧：服务器不解析url中#后的内容
-
-
-
-**更多实战例子文章可见 plat.wgpsec.org**
 
 
 
@@ -707,20 +480,11 @@ Xss-cheat-sheet： https://portswigger.net/web-security/cross-site-scripting/che
 | [BruteXSS](https://github.com/ym2011/PEST/tree/master/BruteXSS) | [Freebuf相关科普](https://www.freebuf.com/sectool/109239.html) [汉化版](https://www.cnblogs.com/Pitcoft/p/6341322.html) |
 | [XSSfrok](https://github.com/bsmali4/xssfork)                | [Seebug作者教程](https://paper.seebug.org/359/#xssfork)      |
 
-**在线XSS平台**
+[.](http://xss.fbisb.com/xss.php)
 
-| 名称   | 地址            |
-| ------ | --------------- |
-| XSS SB | https://xs.sb/  |
-| XSS PT | https://xss.pt/ |
+[..](https://xs.sb/xss.php)
 
-**自建XSS平台**
-
-1. https://github.com/firesunCN/BlueLotus_XSSReceiver
-
-2. https://github.com/mandatoryprogrammer/xsshunter
-
-   
+## 问题
 
 **如何快速发现 xss 位置 ？**
 

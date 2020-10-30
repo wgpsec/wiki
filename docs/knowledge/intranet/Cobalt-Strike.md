@@ -1,3 +1,6 @@
+---
+title: Cobalt Strike
+---
 # Cobalt Strike
 
 # 0x01 基础操作

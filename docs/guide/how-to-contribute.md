@@ -1,3 +1,6 @@
+---
+title: 文章投稿
+---
 # 文章投稿
 
 ## 如何投稿
@@ -6,9 +9,10 @@
 
 将编辑好的文件投稿至 `admin#wgpsec.org`，标题为` 公开知识库投稿 标题`。
 
-::: tip-zh
-markdown文件内的图片以外链形式插入或以压缩包形式打包
-:::
+<a-alert type="info" message="提示" description="markdown文件内的图片以外链形式插入或以压缩包形式打包" showIcon>
+</a-alert>
+
+<br>
 
 [Github图片外链工具](https://img-upload.releases.wgpsec.org/)
 
