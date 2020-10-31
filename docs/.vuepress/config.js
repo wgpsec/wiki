@@ -27,7 +27,7 @@ module.exports = {
   markdown: {
     lineNumbers: true,
     anchor: { 
-      permalinkBefore: true
+      permalinkBefore: false
     }
   },
   themeConfig: {
