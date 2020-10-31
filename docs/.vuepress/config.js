@@ -1,7 +1,7 @@
 module.exports = {
   title: '狼组安全团队公开知识库',
   theme: 'antdocs',
-  description: '开放共享',
+  description: '致力于打造信息安全乌托邦',
   base: '/',
   dest: 'public',
   head: [
@@ -9,17 +9,25 @@ module.exports = {
     ['script', { type: 'text/javascript', src: '/assets/js/push.js' }],
 
     ['meta', { name: 'referrer', content: 'never' }],
-    ['meta', { name: 'keywords', content: '知识库,公开知识库,狼组,狼组安全团队知识库,knowledge' }]
+    ['meta', { name: 'keywords', content: '知识库,公开知识库,狼组,狼组安全团队知识库,knowledge' }],
+    ['meta', { name: 'description', content: '为了让安全爱好者拥有一个良好的学习环境，我们打造了一个免费开放且持续更新的网络安全知识库知识整合站点，WgpSec狼组安全团队公开知识，由WgpSec狼组安全团队成员以及社区使用者共同进行维护。' }],
   ],
-  plugins: {
-    'sitemap': {
-      hostname: 'https://wiki.wgpsec.org'
-    },
-  },
+  // plugins: {
+  //   'sitemap': {
+  //     hostname: 'https://wiki.wgpsec.org'
+  //   },
+  // },
+  plugins: [
+    '@vuepress/active-header-links',{
+      'sitemap': {
+            hostname: 'https://wiki.wgpsec.org'
+          },
+    }
+  ],
   markdown: {
-    lineNumbers: false,
+    lineNumbers: true,
     anchor: { 
-      permalinkBefore: false
+      permalinkBefore: true
     }
   },
   themeConfig: {
@@ -28,7 +36,7 @@ module.exports = {
     logo: '/assets/logo.svg',
     nav: require('./config/nav'),
     sidebar: require('./config/sidebar'),
-    sidebarDepth: 0,
+    sidebarDepth: 2,
     lastUpdated: '上次更新',
     repo: 'https://github.com/wgpsec',
     editLinks: false,

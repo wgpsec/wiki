@@ -21,7 +21,8 @@ title: 关于知识库
 
 <p></p>
 
- - WgpSec狼组安全团队公开知识库致力于成为一个免费开放且持续更新的网络安全知识库知识整合站点，由WgpSec狼组安全团队成员以及社区使用者共同进行维护
+ - 为了让安全爱好者拥有一个良好的学习环境，我们打造了一个免费开放且持续更新的网络安全知识库知识整合站点：WgpSec狼组安全团队公开知识库，由WgpSec狼组安全团队成员以及社区使用者共同进行维护。
+
 <div class="reset-mobile-brand">
 <img width="130" src="https://assets.wgpsec.org/www/images/antd-icon.svg"><span class="sign">+</span><img width="130" src="https://assets.wgpsec.org/www/images/markdown-icon.svg">
 </div>
