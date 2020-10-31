@@ -17,13 +17,13 @@ module.exports = {
   //     hostname: 'https://wiki.wgpsec.org'
   //   },
   // },
-  plugins: [
-    '@vuepress/active-header-links',{
-      'sitemap': {
-            hostname: 'https://wiki.wgpsec.org'
-          },
+  plugins: {
+    '@vuepress/active-header-links':{
+    },
+    'sitemap': {
+      hostname: 'https://wiki.wgpsec.org'
     }
-  ],
+  },
   markdown: {
     lineNumbers: true,
     anchor: { 

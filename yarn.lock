@@ -1141,16 +1141,9 @@
     markdown-it-table-of-contents "^0.4.0"
     prismjs "^1.13.0"
 
-"@vuepress/plugin-active-header-links@1.7.1", "@vuepress/plugin-active-header-links@^1.5.4":
+"@vuepress/plugin-active-header-links@1.7.1", "@vuepress/plugin-active-header-links@^1.5.4", "@vuepress/plugin-active-header-links@^1.7.1":
   version "1.7.1"
   resolved "https://registry.npm.taobao.org/@vuepress/plugin-active-header-links/download/@vuepress/plugin-active-header-links-1.7.1.tgz?cache=0&sync_timestamp=1602782929327&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40vuepress%2Fplugin-active-header-links%2Fdownload%2F%40vuepress%2Fplugin-active-header-links-1.7.1.tgz#5a16281bebb977fc1c2b93d992b1a3b7ff840641"
-  integrity sha1-WhYoG+u5d/wcK5PZkrGjt/+EBkE=
-  dependencies:
-    lodash.debounce "^4.0.8"
-
-"@vuepress/plugin-active-header-links@^1.7.1":
-  version "1.7.1"
-  resolved "https://registry.npm.taobao.org/@vuepress/plugin-active-header-links/download/@vuepress/plugin-active-header-links-1.7.1.tgz#5a16281bebb977fc1c2b93d992b1a3b7ff840641"
   integrity sha1-WhYoG+u5d/wcK5PZkrGjt/+EBkE=
   dependencies:
     lodash.debounce "^4.0.8"
