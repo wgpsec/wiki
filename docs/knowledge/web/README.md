@@ -5,7 +5,7 @@ title: 分类简介
 
 `Web安全`目录下的所有内容均与web有关，只进行信息整合，不会公开POC/EXP等
 
-如需要了解已公开的漏洞信息披露，请前往 [零组资料文库](https://wiki.0-sec.org) 进行查阅
+如需要了解已公开的漏洞信息披露，请前往 [零组资料文库（未公开）](https://wiki.0-sec.org) 或 [白阁文库](https://wiki.bylibrary.cn/) 进行查阅
 
 ## 感谢以下师傅们的投稿
  - 狼组安全团队成员@**wintrysec**

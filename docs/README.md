@@ -36,7 +36,7 @@ footerWrap:
     details: QQ交流群
   - title: 微信交流群
     link: https://assets.wgpsec.org
-    details: 添加好友拉入微信交流群
+    details: 根据提示加入群组
 footer: Powered by WgpSec | Copyright © 2014-2020 狼组安全团队前端
 ---
 
@@ -87,11 +87,13 @@ footer: Powered by WgpSec | Copyright © 2014-2020 狼组安全团队前端
 
 <p>&nbsp; </p>  
 
-[我也想为贡献者之一？](https://github.com/zpfz/vuepress-theme-antdocs/pulls)
+[我也想为贡献者之一？](/guide/how-to-contribute.html)
 
 <p>&nbsp; </p> 
 
 ## 赞助者  
+
+【广告位招租】
 
 <p></p>
 

@@ -27,6 +27,7 @@ module.exports = [
 		collapsable: true,
 		children:[
             "/knowledge/ctf/",
+            "/knowledge/ctf/ctf",
             "/knowledge/ctf/RSA",
             "/knowledge/ctf/Volatility",
             "/knowledge/ctf/deserialize-byte-escape",
