@@ -2,7 +2,8 @@ module.exports = {
   title: '狼组安全团队公开知识库',
   theme: 'antdocs',
   description: '致力于打造信息安全乌托邦',
-  base: './',
+  // base: './',
+  base: process.env.NODE_ENV === "production" ? './' : '/',
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/assets/logo.svg' }],
