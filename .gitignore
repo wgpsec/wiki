@@ -56,7 +56,7 @@ typings/
 
 # dotenv environment variables file
 .vscode
-.env
+#.env
 .idea
 dist
 .DS_Store
