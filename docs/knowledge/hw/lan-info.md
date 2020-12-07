@@ -1,6 +1,7 @@
 ---
-title: 【红队】横向移动之--内网信息收集
+title: 【后渗透】内网信息收集
 ---
+# 内网信息收集
 >  **信息收集的深度，直接关系到内网渗透测试结果的成败** 
 
 **进入内网后，红队专家一般会在本机以及内部网络 开展进一步信息收集和情报刺探工作。**
@@ -25,7 +26,7 @@ title: 【红队】横向移动之--内网信息收集
 whoami /all    
 #查当前用户在目标系统中的具体权限
 
-query user   
+quser   
 #查当前机器中正在线的用户,注意管理员此时在不在
 
 net user        
@@ -45,15 +46,18 @@ ipconfig /all
 #获取本机网络配置
 
 systeminfo
-#查看系统的基本信息（系统版本、软件及补丁的安装情况）
+#查看系统的基本信息（系统版本、软件及补丁的安装情况，是否在域内）
 
-echo %PROCESSOR_ARCHITECTURE%    
+net statistics workstation
+#查看主机开机时间
+
+echo %PROCESSOR_ARCHITECTURE%
 #可查看系统的体系结构，是x86还是AMD64等
 
 tasklist
 #查看本机进程列表，分析是否存在VPN杀软等进程
 
-wmic servcie list brief    
+wmic servcie list brief
 #查看本机服务信息
 
 wmic startup get command,caption    
@@ -61,9 +65,6 @@ wmic startup get command,caption
 
 schtasks /query /fo LIST /v
 #查看系统计划任务
-
-net statistics workstation
-#查看主机开机时间
 ```
 
 **网络信息**
@@ -72,41 +73,28 @@ net statistics workstation
 netstat -ano
 #查看本机所有的tcp,udp端口连接及其对应的pid
 
-netstat -anob   
-#查看本机所有的tcp,udp端口连接,pid及其对应的发起程序
-
 net share
 #查看本机共享列表，和可访问的域共享列表
 
 wmic share get name,path,status
 #利用wmic查找共享列表
 
-route print
-arp -a
-#查看路由表和arp缓存
-
 REG QUERY "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings"
 #查看代理配置情况
 ```
 
- wmic，Windows管理工具，提供了从命令行接口和批命令脚本执行系统管理的支持。自xp之后系统自带 
+wmic，Windows管理工具，提供了从命令行接口和批命令脚本执行系统管理的支持。自xp之后系统自带 
 
 **防火墙的信息和配置（配置防火墙需要管理员权限）**
 
 ```bash
-netsh advfirewall firewall    
-#查看防火墙配置
+#显示所有动态入站规则
+netsh advfirewall firewall show rule name=all dir=in type=dynamic
 
-netsh firewall set opmode disable
-#关闭防火墙，Server 2003及之前的版本
-
+#关闭防火墙
 netsh advfirewall set allprofiles state off
-#关闭防火墙，Server 2003之后的版本
 
-netsh firewall add allowedprogram c:\nc.exe "allow nc" enable
-#Server 2003及之前的版本允许指定程序的全部连接
 
-#Server 2003之后的版本
 #允许入站
 netsh advfirewall firewall add rule name="pass nc" dir=in action=allow program="c:\nc.exe"
 
@@ -118,6 +106,10 @@ netsh advfirewall firewall add rule name="remote Desktop" protocol=TCP dir=in lo
 
 #自定义防火墙日志存储位置
 netsh advfirewall set currentprofile logging filename "c:\windows\temp\fw.log"
+
+#Server 2003及之前的版本
+netsh firewall set opmode disable	#关闭防火墙
+netsh firewall add allowedprogram c:\nc.exe "allow nc" enable	#允许指定程序的全部连接
 ```
 
 **操作当前机器的远程桌面连接服务（开启和关闭rdp，需要管理员权限）**
@@ -135,13 +127,18 @@ REG QUERY "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\W
 
 # 主机发现
 
+**查看路由表**
+
+```bash
+netstat -r
+```
+
 **基于ARP**
 
  arp可以轻易bypass掉各类应用层防火墙，除非是专业的arp防火墙 
 
 ```bash
-sudo netdiscover -r 192.168.2.0/16 -i eth0 
-#Linux下推荐使用，kali自带，通过端口转发或边界代理
+arp -a	#打印arp缓存
 
 arp-scan.exe -t 192.168.2.0/24
 #Windows下推荐使用，上传到目标主机
@@ -155,7 +152,7 @@ arp-scan.exe -t 192.168.2.0/24
 for /L %I in (1,1,254) DO @ping -w 1 -n 1 192.168.2.%I | findstr "TTL="
 ```
 
-**SPN扫描服务**
+**SPN扫描服务 （域）**
 
 每个重要的服务在域中都有对用的SPN，所以不必使用端口扫描，只需利用SPN扫描就能找到大部分应用服务器
 
@@ -164,33 +161,15 @@ for /L %I in (1,1,254) DO @ping -w 1 -n 1 192.168.2.%I | findstr "TTL="
 setspn -q */*
 ```
 
-使用PowerShell-AD-Recon脚本
+**端口扫描（上传自研发工具）**
 
-PowerShell-AD-Recon：https://github.com/PyroTek3/PowerShell-AD-Recon 
+扫描C段或B段的高危端口（21,22,445,3389,3306,1443,1521,6379）和Web端口，并取Web-title
 
-```bash
-powershell -nop -exec bypass -c "& {Import-Module '.\Discover-PSInterestingServices.ps1';Discover-PSInterestingServices}"
-```
-
-**nmap端口扫描（上边界代理）**
-
-一般前边的方法能用，就不用代理扫
-
-如果上代理扫没被封`IP`的话可以尝试`Goby`资产梳理一波（谨慎使用）
-
-```bash
-proxychains nmap -T4 -A 10.1.1.0/24
-```
+zabbix,edr，svn的端口
 
 **基于MSF的服务发现（上代理）**
 
 ```bash
-#ARP
-auxiliary/scanner/discovery/arp_sweep
-
-#UDP
-auxiliary/scanner/discovery/udp_sweep
-
 #HTTP服务发现
 auxiliary/scanner/http/http_version
 
@@ -198,21 +177,29 @@ auxiliary/scanner/http/http_version
 use auxiliary/scanner/smb/smb_version
 ```
 
-**寻找原则：尽量不做大规模扫描（防止被踢出内网）**
+# 迅速扩大战果
 
-1. Hosts文件（看域名绑定）
-2. 各类history
-   1. Bash
-   2. ssh know_hosts
-   3. 浏览器历史  https://xenarmor.com/password-secrets-of-popular-web-browsers/ 
-3. 各类配置文件
-   1. Zabbix（找到server位置，用默认密码去碰内网设备）
-   2. 主机edr配置文件
-4. PAC列表（Windows上代理出网，里面会写全内网所有主机域名）
-5. DNS查询
-   1. 直接指定DNS服务器为内网DNS，通过域名爆破工具查询
-   2. 域传送在内网很常见
-6. arp表（周围存活主机）
+Hosts文件（看域名绑定）
+
+各类配置文件
+
+1. Zabbix（找到server位置，用默认密码去碰内网设备）
+2. 主机edr配置文件
+3. 翻数据库配置文件，拿到密码获取数据库权限
+
+各类history
+
+1. Bash
+2. ssh know_hosts
+3. 浏览器历史  https://xenarmor.com/password-secrets-of-popular-web-browsers/ 
+4. mstsc连接记录
+5. Windows用户桌面文档（可能会记录一些服务器的密码）
+
+PAC列表（Windows上代理出网，里面会写全内网所有主机域名）
+
+wiki文档（内网主机记录表，默认密码等）
+
+整理针对性弱口令 -> 扫内网（代理进去也能扫）
 
 # 域信息收集
 

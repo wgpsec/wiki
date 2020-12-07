@@ -1,5 +1,33 @@
 module.exports = [
     '/knowledge/',
+      {
+		title: "基础知识",
+		collapsable: true,
+		children:[
+            "/knowledge/base/safety",
+            "/knowledge/base/modern-crypt",
+            "/knowledge/base/network-web",
+            "/knowledge/base/network-tcp-ip",
+            "/knowledge/base/network-http",
+            "/knowledge/base/network-https",
+            "/knowledge/base/network-route",
+            "/knowledge/base/linux-cmd",
+            "/knowledge/base/linux-awk",
+            "/knowledge/base/git-base",
+            "/knowledge/base/docker-base"
+		]
+      },
+      {
+		title: "工具手册",
+		collapsable: true,
+		children:[
+            "/knowledge/tools/nmap",
+            "/knowledge/tools/sqlmap",
+            "/knowledge/tools/metasploit",
+            "/knowledge/tools/burpsuite",
+            "/knowledge/intranet/Cobalt-Strike"
+		]
+	},
 	{
 		title: "Web安全",
 		collapsable: true,
@@ -37,27 +65,33 @@ module.exports = [
 		]
 	},
 	{
-		title: "红蓝对抗",
+		title: "渗透测试",
 		collapsable: true,
 		children:[
             "/knowledge/hw/",
-            "/knowledge/hw/boundary-info",
-            "/knowledge/hw/checklist",
-            "/knowledge/hw/net-proxy",
+            "/knowledge/hw/wan-info",
+            "/knowledge/hw/seek-lan-entry",
+            "/knowledge/hw/tunnel",
+            "/knowledge/hw/trans-file",
+            "/knowledge/hw/reverse-shell",
+            "/knowledge/hw/privilege",
             "/knowledge/hw/webshell",
-            "/knowledge/hw/cc",
-            "/knowledge/hw/os-shell",
-            "/knowledge/hw/to-root",
+            "/knowledge/hw/os-backdoor",
+            "/knowledge/hw/dns-c2",
             "/knowledge/hw/lan-info",
-            "/knowledge/hw/ntml-hash",
-            "/knowledge/hw/domain-pentest",
-            "/knowledge/hw/del-log",
-            "/knowledge/hw/defense-assets",
-            "/knowledge/hw/linux-baselinesec",
-            "/knowledge/hw/windows-baselinesec",
-            "/knowledge/hw/monitor-read",
+            "/knowledge/hw/get-os-passwd",
+            "/knowledge/hw/hash-pass",
+            "/knowledge/hw/ticket-pass",
+            "/knowledge/hw/Gold-and-silver-notes",
+            "/knowledge/hw/host-online",
+            "/knowledge/hw/remove-os-log",
+            "/knowledge/hw/defend-plan",
+            "/knowledge/hw/linux-jiagu",
+            "/knowledge/hw/win-jiagu",
             "/knowledge/hw/emergency-response",
-            "/knowledge/hw/back-counter"
+            "/knowledge/hw/linux-emergency-response",
+            "/knowledge/hw/win-emergency-response",
+            "/knowledge/hw/remove-webshell"
 		]
     },
 	{
@@ -68,12 +102,4 @@ module.exports = [
             "/knowledge/code-audit/php-code-audit",
 		]
     },
-	{
-		title: "内网系列",
-		collapsable: true,
-		children:[
-            "/knowledge/intranet/",
-            "/knowledge/intranet/Cobalt-Strike"
-		]
-	}
 ];
