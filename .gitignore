@@ -70,6 +70,7 @@ package-lock.json
 # bak files
 /components/test/*
 list.txt
+/pubilc
 
 site/dev.js
 
