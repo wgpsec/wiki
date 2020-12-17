@@ -1,15 +1,12 @@
+---
+title: Aggressor-Script
+---
 
-
-
+# Sleep环境的搭建
 
 >  C2：Cobalt Strike，一款多人运动工具，常常使用再后渗透阶段
 
 > Aggressor Script：是C2 3.0以上版本的一个内置的脚本语言，他是由Sleep脚本解析，Sleep脚本目前国内是没有中文版本的，可能是因为使用的人不多，在在后面我会去把这个语言进行翻译；在CS 3.0 以上的版本，菜单、选项、事件、都有默认的default.cna构建。我们可以使用一些IRC、Webhook去对接机器人和监控，比如瞎子哥的Server上线监听，以及梼杌等插件的编写，所以本文也会在他们的代码基础上去解释一些东西
-
-
-
-
-# 环境的搭建
 
 由于 Aggressor Script是由Sleep解析的，所以我们先要安装一下这个语言的解释器，这个语言是基于Java的脚本语言
 
@@ -180,11 +177,11 @@ println("Dict is ".%dict);
 
 ```
 
-### Arrays：
+### Arrays
 
 ![image-20201213142244276](/images/Aggressor-Script/image-20201213142244276.png)
 
-![image-20201213142254825](image-20201213142254825.png)
+![image-20201213142254825](/images/Aggressor-Script/image-20201213142254825.png)
 
 这样可以对列表中的元素进行输出。格式话输出的语法是使用 `.` 进行拼接。
 
@@ -196,7 +193,7 @@ println("Dict is ".%dict);
 
 
 
-### 遍历：
+### 遍历
 
 语法：
 

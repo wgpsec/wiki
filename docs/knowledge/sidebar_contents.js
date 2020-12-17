@@ -25,7 +25,8 @@ module.exports = [
             "/knowledge/tools/sqlmap",
             "/knowledge/tools/metasploit",
             "/knowledge/tools/burpsuite",
-            "/knowledge/intranet/Cobalt-Strike"
+            "/knowledge/intranet/Cobalt-Strike",
+			"/knowledge/intranet/Aggressor-script"
 		]
 	},
 	{
