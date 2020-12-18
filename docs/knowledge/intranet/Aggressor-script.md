@@ -730,29 +730,31 @@ Listener API 会将所有的监听信息显示出来，我们可以使用 `Liste
 
   * bspawn：创建新的会话，需要传递一个会话ID
   
-    ```shell
+```java
     popup beacon_bottom{
     	item("&会话传递",{openPayloadHelper(lambda({
     	bspawn($bid, $1);
   	println("我们传递的监听器是".$1)},# 
         $bid => $1));});
-}
-    ```
-  
-    当openpayladhelper打开存在的Listener会话时，他需要接受一个值，这个值是选定的监听器，然后这里将这个值传递给bspawn，bsapwn需要接受的第一个值也是选定的监听器（bspawn是生成一个新的会话），所以这里我们的将选择的监听器传递给bspawn就可以传递会话，这个地方的写法是固定的，单独的将openPayloadHelper使用是不可以的，但是baspwn是可以的，当运行上面的内容以后，我们可以查看`$1`的值，你会发现就是我们所选择的监听器：
-    
-    ![image-20201214112030750](/images/Aggressor-Script/image-20201214112030750.png)
-    
-    ![image-20201214112048256](/images/Aggressor-Script/image-20201214112048256.png)
-    
-    ![image-20201214112103471](/images/Aggressor-Script/image-20201214112103471.png)
-  
-    
+  }
+```
 
-    这样我们也算是重写了我们 Spwan的数据模型
-  
-    官方菜单写法中，使用的是 `binput`，这个 数据模型 是用来在Becon 中显示我们执行的命令的，下面是官方的写法的结果：
-    ![image-20201214112330479](/images/Aggressor-Script/image-20201214112330479.png)
+
+​    
+当openpayladhelper打开存在的Listener会话时，他需要接受一个值，这个值是选定的监听器，然后这里将这个值传递给bspawn，bsapwn需要接受的第一个值也是选定的监听器（bspawn是生成一个新的会话），所以这里我们的将选择的监听器传递给bspawn就可以传递会话，这个地方的写法是固定的，单独的将openPayloadHelper使用是不可以的，但是baspwn是可以的，当运行上面的内容以后，我们可以查看`$1`的值，你会发现就是我们所选择的监听器：
+​    
+![image-20201214112030750](/images/Aggressor-Script/image-20201214112030750.png)
+​    
+![image-20201214112048256](/images/Aggressor-Script/image-20201214112048256.png)
+
+![image-20201214112103471](/images/Aggressor-Script/image-20201214112103471.png)
+
+​    
+
+这样我们也算是重写了我们 Spwan的数据模型
+    
+官方菜单写法中，使用的是 `binput`，这个 数据模型 是用来在Becon 中显示我们执行的命令的，下面是官方的写法的结果：
+![image-20201214112330479](/images/Aggressor-Script/image-20201214112330479.png)
 
 
 
@@ -1579,7 +1581,7 @@ github链接：https://github.com/mgeeky/cobalt-arsenal/blob/master/httprequest.
 
 关于脚本编写的官方文档到这里就结束了，后面是自定义报告和一些其他零碎的东西，C2插件的编写最主要的是 数据模型 和事件，我们需要将不同的事件和数据模型结合，产生不同的结果；例如我们如何让上线的主机直接添加自启动、修改注册表、激活guest用户等，都可以自己写插件实现，由于 Aggressor Script是基于Sleep脚本语言来写的，所以需要好好的阅读Sleep官方的文档。翻译内容可能会存在错误，还请各位师傅斧正
 
-![image-20201217143729412](/images/Aggressor-Script/image-20201217143729412.png)
+
 
  ## 参考文档
 

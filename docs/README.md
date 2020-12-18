@@ -35,9 +35,9 @@ footerWrap:
     link: https://jq.qq.com/?_wv=1027&k=7clYgqSn
     details: QQ交流群
   - title: 微信交流群
-    link: https://assets.wgpsec.org
+    link: /guide
     details: 根据提示加入群组
-footer: Powered by WgpSec | Copyright © 2014-2020 狼组安全团队前端
+footer: Powered by WgpSec Team | Copyright © 2014-2021 WgpSec 狼组安全团队
 ---
 
 <a-alert type="warning" message="警告" description="狼组安全团队公开知识库仅可用于安全从业人员或网络安全爱好者查阅资料，所提供的一切信息禁止用于任何非法用途，所产生的后果与狼组安全团队和内容贡献者无关。" showIcon>
