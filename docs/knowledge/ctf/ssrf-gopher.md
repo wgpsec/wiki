@@ -1,5 +1,5 @@
 ---
-title: Gopher 协议
+title: ssrf gopher协议
 ---
 # Gopher 协议
 
@@ -100,3 +100,8 @@ save
 
 即为redis将输入的语句保存在指定位置的php文件中，生成后门
 
+
+
+## 相关环境：
+
+BUUCTF[GKCTF_EZWEB]

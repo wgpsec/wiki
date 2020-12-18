@@ -55,14 +55,22 @@ module.exports = [
 		title: "CTF",
 		collapsable: true,
 		children:[
-            "/knowledge/ctf/",
-            "/knowledge/ctf/ctf",
-            "/knowledge/ctf/RSA",
-            "/knowledge/ctf/Volatility",
-            "/knowledge/ctf/deserialize-byte-escape",
-            "/knowledge/ctf/js-prototype-chain-pollution",
-            "/knowledge/ctf/ssrf-gopher",
-            "/knowledge/ctf/xxe-bypass-payload"
+            "/knowledge/web/",
+            "/knowledge/web/sql-injection",
+            "/knowledge/web/xss",
+            "/knowledge/web/expression-language-injection",
+            "/knowledge/web/xxe",
+            "/knowledge/web/source-leaked",
+            "/knowledge/web/code-injection",
+            "/knowledge/web/csrf-ssrf",
+            "/knowledge/web/file-download",
+            "/knowledge/web/file-includes",
+            "/knowledge/web/file-upload",
+            "/knowledge/web/jwt-cookie",
+            "/knowledge/web/logical-vulns",
+            "/knowledge/web/phpsec",
+            "/knowledge/web/same-origin-policy",
+            "/knowledge/web/session-sec"
 		]
 	},
 	{
