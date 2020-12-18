@@ -41,7 +41,7 @@ Sleep语言下载地址：http://sleep.dashnine.org/download/sleep.jar
 ![image-20201212182434257](/images/Aggressor-Script/image-20201212182434257.png)
 
 这里我们可以使用 help查看一些帮助信息：
-![image-20201212182524164](image-20201212182524164.png)
+![image-20201212182524164](/images/Aggressor-Script/image-20201212182524164.png)
 
 下面是介绍：
 
