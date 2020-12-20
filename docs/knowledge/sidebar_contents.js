@@ -69,7 +69,8 @@ module.exports = [
             "/knowledge/ctf/Volatility",
             "/knowledge/ctf/ret2text",
             "/knowledge/ctf/ret2shellcode",
-            "/knowledge/ctf/ret2syscall"
+            "/knowledge/ctf/ret2syscall",
+			"/knowledge/ctf/JWT"
 		]
 	},
 	{
