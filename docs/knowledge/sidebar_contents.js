@@ -63,14 +63,14 @@ module.exports = [
             "/knowledge/ctf/ssrf-gopher",
             "/knowledge/ctf/deserialize-byte-escape",
             "/knowledge/ctf/bypass-disable-function",
+			"/knowledge/ctf/JWT",
             "/knowledge/ctf/js-prototype-chain-pollution",
             "/knowledge/ctf/SSTI",
             "/knowledge/ctf/RSA",
             "/knowledge/ctf/Volatility",
             "/knowledge/ctf/ret2text",
             "/knowledge/ctf/ret2shellcode",
-            "/knowledge/ctf/ret2syscall",
-			"/knowledge/ctf/JWT"
+            "/knowledge/ctf/ret2syscall"
 		]
 	},
 	{
