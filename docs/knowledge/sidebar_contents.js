@@ -57,19 +57,19 @@ module.exports = [
 		children:[
             "/knowledge/ctf/",
             "/knowledge/ctf/ctf",
-			"/knowledge/ctf/xxe",
-			"/knowledge/ctf/exec",
-			"/knowledge/ctf/php-serialize",
-			"/knowledge/ctf/ssrf-gopher",
+            "/knowledge/ctf/xxe",
+            "/knowledge/ctf/exec",
+            "/knowledge/ctf/php-serialize",
+            "/knowledge/ctf/ssrf-gopher",
             "/knowledge/ctf/deserialize-byte-escape",
-			"/knowledge/ctf/bypass-disable-function",
+            "/knowledge/ctf/bypass-disable-function",
             "/knowledge/ctf/js-prototype-chain-pollution",
-			"/knowledge/ctf/SSTI",
-			"/knowledge/ctf/RSA",
+            "/knowledge/ctf/SSTI",
+            "/knowledge/ctf/RSA",
             "/knowledge/ctf/Volatility",
-			"/knowledge/ctf/ret2text",
-			"/knowledge/ctf/ret2shellcode",
-			"/knowledge/ctf/ret2syscall"
+            "/knowledge/ctf/ret2text",
+            "/knowledge/ctf/ret2shellcode",
+            "/knowledge/ctf/ret2syscall"
 		]
 	},
 	{
