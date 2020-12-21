@@ -8,6 +8,23 @@ title: 更新日志
 
 <template>
   <a-timeline>
+   <a-timeline-item>
+      2020.12.18
+      <a-tag color="blue">更新</a-tag>
+      <p>
+        更新内容：<br/>
+        &emsp;- <a-tag color="orange">更新</a-tag> <strong>CTF</strong>分类<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>JWT<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>SSTI<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>bypass disable_function<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>命令执行<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>PHP反序列化<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>ret2shellcode<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>ret2syscall<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>ret2text<br/>
+        &emsp;&emsp;- <a-tag color="orange">新增</a-tag>XXE<br/>
+      </p>
+    </a-timeline-item>
   <a-timeline-item>
       2020.12.17
       <a-tag color="blue">更新</a-tag>
