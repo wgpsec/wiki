@@ -48,7 +48,7 @@ title: 伪随机数
 > - 通过mt_rand源码分析理解为什么mt_rand()只播种一次
 > - 在`/ext/standard/rand.c`中可以看到，播完种后，将会将 mt_rand_is_seeded 的值设置为1，因此mt_rand只播种一次 
 
-![mt_rand1](images/PRF/mt_rand1.jpg)
+![mt_rand1](/images/PRF/mt_rand1.jpg)
 
 ### 攻击方法
 
@@ -88,17 +88,17 @@ title: 伪随机数
 > - 调用`random.nextInt`方法生成三个连续的随机数，要求根据前两个随机数去预测第三个随机数 
 > - 查看源代码，可以看见直接调用的next方法，传递的参数是32
 
-<img src="images/PRF/java_random1.jpg" alt="java_random1" style="zoom:150%;" />
+<img src="/images/PRF/java_random1.jpg" alt="java_random1" style="zoom:150%;" />
 
 > - 追踪next方法，可以看到前一个随机数种子（oldseed）和后一个随机数种子（nextseed）都被定义为long类型，方法返回的值就是下一个种子右移16位后强制转换int的结果
 
-![java_random2](images/PRF/java_random2.jpg)
+![java_random2](/images/PRF/java_random2.jpg)
 
 > - while里的compareAndSet方法只是比较当前的种子值是否为oldseed，如果是的话就更新为nextseed，一般情况下都会返回true 
 > - 下一个种子的更新算法就在do-while循环里面：`nextseed = (oldseed * multiplier + addend) & mask`，种子的初始值是将当前系统时间带入运算得到的结果
 > - 返回开头的类定义可以看到这几个常量属性的值 
 
-![java_random3](images/PRF/java_random3.jpg)
+![java_random3](/images/PRF/java_random3.jpg)
 
 > -  这个种子的更新算法本质上就是一个线性同余生成器 
 
@@ -106,7 +106,7 @@ title: 伪随机数
 
 LCG的公式如下：
 
-![LCG](images/PRF/LCG.jpg)
+![LCG](/images/PRF/LCG.jpg)
 
 > - 和上面的代码对比可以看出是基本一致的，因为和mask常量做与运算就相当于是舍弃高位，保留2进制的低47位，也就相当于模2的48次方。我们既然都有了常量的值了，就可以去做第三个随机数的预测了。
 
