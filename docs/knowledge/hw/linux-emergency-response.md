@@ -1,7 +1,7 @@
 ---
-title: 【蓝队】Linux入侵排查
+title: 【防守方】Linux应急响应
 ---
-## Linux入侵排查
+
 ## 账号安全
 
 先查看基础用户信息文件(/etc/passwd，/etc/shadow，/etc/group)
@@ -139,7 +139,7 @@ more /var/log/secure
 /var/log/apt/
 ```
 
-**/var/log/syslog：**只记录警告信息，常常是系统出问题的信息；
+**/var/log/syslog**：只记录警告信息，常常是系统出问题的信息；
 
 > syslog是Linux系统默认的日志守护进程
 >
@@ -158,11 +158,3 @@ more /var/log/secure
 ```bash
 cat /dev/null > /etc/init.d/syslog
 ```
-
-## 查杀工具
-
-[杀软-Clamav](http://www.clamav.net/download.html)
-
-[chkrootkit](http://www.chkrootkit.org/)、[rkhunter](http://rkhunter.sourceforge.net/)
-
-[GScan自动化检测脚本](https://github.com/grayddq/GScan)

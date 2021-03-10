@@ -4,7 +4,7 @@ heroImage: /assets/logo.svg
 actionText: 使用指南
 actionLink: /guide/
 features:
-- title: 方便
+- title: 便捷
   details: 内容精心分类，搜索精准快捷
 - title: 开放
   details: 无需注册登录，知识获取自由
@@ -14,18 +14,25 @@ footerColumn: 4
 footerWrap: 
 - headline: 🌿生态系统
   items:
-  - title: 狼组安全服务平台
-    link: https://plat.wgpsec.org
-    details: 一站式安全服务平台
+  - title: 狼盘
+    link: https://pan.wgpsec.org
+    details: 安全工具下载（带宽满速）
+  - title: 狼组漏洞库
+    link: https://poc.wgpsec.org/
+    details: 狼组POC文库
   - title: 狼组渗透资源库
     link: https://go.wgpsec.org
-    details: 边打边搜的渗透资源库
+    details: 渗透工具链接导航
+    
 - headline: 🔗友情链接
   items:
+  - title: Hacking8
+    link: https://www.hacking8.com
   - title: TimelineSec
     link: http://www.timelinesec.com
   - title: 零组安全团队
     link: https://www.0-sec.org/
+  
 - headline: 💬社区交流
   items:
   - title: 狼组安全团队1群
@@ -51,7 +58,7 @@ footer: Powered by WgpSec Team | Copyright © 2014-2021 WgpSec 狼组安全团�
 
 <a-tooltip placement="bottom">
   <template slot="title">
-    Wintrysec
+    wintrysec（温酒）
   </template>
   <a-avatar src="http://img.static.plat.wgpsec.org/wintrysec.jpg" :size="54"/>
 </a-tooltip>

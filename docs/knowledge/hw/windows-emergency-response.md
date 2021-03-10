@@ -1,7 +1,7 @@
 ---
-title: 【蓝队】Windows入侵排查
+title: 【防守方】Windows应急响应
 ---
-## Windows入侵排查
+
 ## 检查系统账号
 
 ```bash
@@ -70,8 +70,6 @@ wmic service list brief
 
 运行框输入`eventvwr.msc`，打开事件查看器
 
-导出应用程序日志、安全日志、系统日志，利用[Log Parser](https://www.microsoft.com/en-us/download/details.aspx?id=24659)+[Log Parser Studio](https://gallery.technet.microsoft.com/Log-Parser-Studio-cd458765)进行分析。
-
 **系统日志**
 
 > 记录操作系统组件产生的事件，主要包括驱动程序、系统组件和应用软件的崩溃以及数据丢失错误等。
@@ -126,5 +124,5 @@ wmic service list brief
 
 ----
 
-[更多事件ID说明](https://support.microsoft.com/zh-cn/help/977519/description-of-security-events-in-windows-7-and-in-windows-server-2008)
+
 

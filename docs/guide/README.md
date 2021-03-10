@@ -6,7 +6,7 @@ title: 关于知识库
 
 <a-alert type="success">
   <span slot="message">
-    狼组安全团队公开知识库重构啦~
+    基础且系统化的网络安全文库~
   </span>
 </a-alert>
 
@@ -14,14 +14,7 @@ title: 关于知识库
 
 <!-- <a-divider dashed /> -->
 
-本知识库离线版本已在Github仓库公开。
-
-![build](https://img.shields.io/badge/build-OK-brightgreen?style=flat-square)
-<iframe class="reset-iframe" src="https://ghbtns.com/github-btn.html?user=wgpsec&repo=SafeWiki&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-
-<p></p>
-
- - 为了让安全爱好者拥有一个良好的学习环境，我们打造了一个免费开放且持续更新的网络安全知识库知识整合站点：WgpSec狼组安全团队公开知识库，由WgpSec狼组安全团队成员以及社区使用者共同进行维护。
+![build](https://img.shields.io/badge/build-OK-brightgreen?style=flat-square)`Antd + Markdown`
 
 <div class="reset-mobile-brand">
 <img width="130" src="https://assets.wgpsec.org/www/images/antd-icon.svg"><span class="sign">+</span><img width="130" src="https://assets.wgpsec.org/www/images/markdown-icon.svg">
@@ -32,8 +25,8 @@ title: 关于知识库
 
 ## 面向人群
 
-- 安全从业者
-- 热爱网络安全的学习者
+- 网络安全从业者
+- 网络安全爱好者
 
 ## 官方交流群
 

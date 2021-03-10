@@ -1,9 +1,8 @@
 ---
 title: 同源策略和域安全
+date: 2020-1-22 20:07:00
 ---
-# 同源策略和域安全
-
-# 同源策略
+## 同源策略
 
 同源策略是目前所有浏览器都实行的一种安全政策。
 
@@ -23,9 +22,9 @@ A网页设置的 Cookie，B网页不能打开，除非这两个网页同源。
 
 **同源策略，哪些东西是同源可以获取到的？**
 
-> cookie： 服务器写入浏览器的一小段信息，只有同源的网页才能共享
+> `cookie：` 服务器写入浏览器的一小段信息，只有同源的网页才能共享
 >
-> DOM： 	如果两个网页不同源，就无法拿到对方的DOM ； 典型的例子是`iframe`窗口和`window.open`方法打开的窗口，它们与父窗口无法通信 
+> `DOM：` 	如果两个网页不同源，就无法拿到对方的DOM ； 典型的例子是`iframe`窗口和`window.open`方法打开的窗口，它们与父窗口无法通信 
 
 **如果子域名和顶级域名不同源，在哪里可以设置叫他们同源？**
 
@@ -53,11 +52,7 @@ var domain = document.domain;
 - **端口**：IE 未将端口号加入到同源策略的组成部分之中，
 - 因此 `http://company.com:81/index.html` 和 `http://company.com/index.html`  属于同源并且不受任何限制
 
-
-
-**如何设置可以跨域请求数据？jsonp是做什么的？**
-
-# 如何规避同源策略？
+**如何规避同源策略？**
 
 > - 以下三种方法可以规避同源策略的限制
 > - JSONP
@@ -178,8 +173,6 @@ callback函数的名称可以自定义，而输出环境又是`js`环境，如�
 正是因为有了`Origin`这个字段，所以`WebSocket`才没有实行同源政策。
 
 因为服务器可以根据这个字段，判断是否许可本次通信。 
-
-
 
 ## CORS(重点)
 
@@ -310,7 +303,7 @@ python3 -m http.server --cgi
 
 
 
-# CSP是什么？如何设置CSP？
+## CSP是什么？如何设置CSP？
 
 `CSP`（Content Security Policy）浏览器内容安全策略， 为了缓解部分跨站脚本问题 。 
 
@@ -333,7 +326,7 @@ object-src(标签)：不信任任何URL，即不加载任何资源
 
 `CSP`各种限制选项参考：[知乎回答](https://www.zhihu.com/question/21979782)，[CSP基础语法和绕过](https://www.mi1k7ea.com/2019/02/24/CSP%E7%AD%96%E7%95%A5%E5%8F%8A%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%E5%B0%8F%E7%BB%93/)
 
-## 绕过CSP(1、2、3、5 重点)
+### 绕过CSP(1、2、3、5 重点)
 
 **1.`URL`跳转**
 
@@ -429,10 +422,4 @@ Content-Security-Policy: default-src 'none';script-src 'nonce-abc'
 ```html
 <meta http-equiv="Set-Cookie" Content="cookievalue=xxx;expires=Wednesday,21-Oct-98 16:14:21 GMT; path=/">
 ```
-
-**两个`CSP`绕过案例**
-
-https://www.mi1k7ea.com/2019/02/21/%E4%B8%80%E9%81%93%E7%BB%95%E8%BF%87CSP%E7%9A%84XSS%E9%A2%98%E7%9B%AE/
-
-https://www.mi1k7ea.com/2019/08/18/%E5%88%A9%E7%94%A8HTML%E6%B3%A8%E5%85%A5%E5%8A%AB%E6%8C%81%E6%A0%87%E7%AD%BEBypass-CSP/
 

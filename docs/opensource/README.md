@@ -8,7 +8,7 @@ title: 狼组安全团队开源项目
 <p>&emsp;</p>   
 <a-row :gutter="[32,32]">
 	<Card 
-		cover="https://github.com/ro4lsc/IGScan/raw/master/Image/screenshot-4.png" 
+		cover="https://gitee.com/wintrysec/images/raw/master/IGScan.png" 
 		link="https://github.com/wgpsec/IGScan" 
 		title="IGScan" 
 		author="作者：ro4lsc" 
@@ -16,10 +16,10 @@ title: 狼组安全团队开源项目
 </a-row>
 <a-row :gutter="[32,32]">
 	<Card 
-		cover="https://github.com/wgpsec/VulnRange/raw/master/README/image-20200921221721429.png" 
+		cover="https://gitee.com/wintrysec/images/raw/master/VulnRange-bg.png" 
 		link="https://github.com/wgpsec/VulnRange" 
-		title="VulnRange" 
-		author="作者：wintrysec" 
+		title="VulnRange-[组件漏洞靶场]" 
+		author="作者：wintrysec（温酒）" 
 	/>
 </a-row>
 

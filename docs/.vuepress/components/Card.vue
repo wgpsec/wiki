@@ -5,7 +5,7 @@
 			<img :src="cover" slot="cover" class="reset-height"/>
 			<template class="ant-card-actions" slot="actions">
 				<a :href="link" target="_blank" rel="noopener noreferrer">
-					<a-button type="primary" icon="github" ghost>Github仓库</a-button>
+					<a-button type="primary" icon="github" ghost>传送门</a-button>
 				</a>
 			</template>
 			<a-card-meta :title="title" :description="author">
