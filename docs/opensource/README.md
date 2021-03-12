@@ -21,7 +21,7 @@ title: 狼组安全团队开源项目
 	/>
 	<Card 
 		cover="https://gitee.com/wintrysec/images/raw/master//wolf-awd.png" 
-		link="WolfAwd" 
+		link="https://github.com/wgpsec/WolfAwd" 
 		title="WolfAwd-[AWD线下赛框架]" 
 		author="作者：W4ndell" 
 	/>
