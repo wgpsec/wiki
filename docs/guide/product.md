@@ -8,8 +8,8 @@ title: 🌿生态系统
 	<Card 
 		cover="https://gitee.com/wintrysec/images/raw/master//狼毫.png" 
 		link="https://plat.wgpsec.org/" 
-		title="狼毫" 
-		author="在线工具集-小工具、大用处" 
+		title="狼组安全平台" 
+		author="在线工具集合平台" 
 	/>
 	<Card 
 		cover="https://gitee.com/wintrysec/images/raw/master//wolf-pan.png" 
@@ -31,14 +31,7 @@ title: 🌿生态系统
 	/>
 	
 </a-row>
-<!-- <a-row :gutter="[32,32]">
-	<Card 
-		cover="https://gitee.com/wintrysec/images/raw/master/VulnRange-bg.png" 
-		link="https://github.com/wgpsec/VulnRange" 
-		title="VulnRange-[组件漏洞靶场]" 
-		author="作者：wintrysec（温酒）" 
-	/>
-</a-row> -->
+
 
 <style>
 .ant-card-hoverable{

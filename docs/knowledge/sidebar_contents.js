@@ -92,7 +92,8 @@ module.exports = [
             "/knowledge/hw/2020-defend-tips",
             "/knowledge/hw/windows-emergency-response",
             "/knowledge/hw/linux-emergency-response",
-            "/knowledge/hw/kill-webshell"
+            "/knowledge/hw/kill-webshell",
+            "/knowledge/hw/purple-team",
 		]
     },
 	{
