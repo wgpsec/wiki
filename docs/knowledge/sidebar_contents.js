@@ -74,7 +74,8 @@ module.exports = [
             "/knowledge/web/xss",
             "/knowledge/web/xxe",
             "/knowledge/web/sql_injection",
-            "/knowledge/web/mysql-write-shell"
+            "/knowledge/web/mysql-write-shell",
+            "/knowledge/web/websocket-sec"
 		]
 	},
 	
