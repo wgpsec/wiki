@@ -86,6 +86,8 @@ module.exports = [
             "/knowledge/hw/",
             "/knowledge/hw/border-info",
             "/knowledge/hw/agent",
+            "/knowledge/hw/host-survival-domain",
+            "/knowledge/hw/intradomain-port",
             "/knowledge/hw/to-root",
             "/knowledge/hw/hold-root",
             "/knowledge/hw/transverse",
