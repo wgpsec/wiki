@@ -105,6 +105,7 @@ module.exports = [
 		children:[
             "/knowledge/code-audit/",
             "/knowledge/code-audit/php-code-audit",
+			"/knowledge/code-audit/java-code-base",
 		]
     },
 ];
