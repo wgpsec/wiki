@@ -177,15 +177,6 @@ Schtasks.exe能够在本地或远程计算机上创建，删除，查询，更�
 
 不带参数运行Schtasks.exe会显示每个已注册任务的状态和下一次运行时间。
 
-**Empire中的模块**
-
-```bash
-persistence/userland/schtasks
-persistence/elevated/schtasks*		#需要管理员权限
-```
-
-一个开源工具： https://github.com/fireeye/SharPersist 
-
 **wmi后门**
 
 WMI后门使用了WMI的两个特征：**无文件**和**无进程**（需要管理员权限运行）。
@@ -225,6 +216,12 @@ ren sethc.exe cmd.exeren aaa.exe sethc.exe
 连按5下Shift弹出cmd窗口
 
 > **检查后门**：连续按5下弹出cmd窗口（当然还有其它放大镜讲述人等）
+
+木马加入开机启动项
+
+```bash
+reg add HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v SunRAC /t reg_sz /d "C:\Users\Public\Downloads\msservice.exe" 
+```
 
 ### Linux
 

