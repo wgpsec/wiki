@@ -41,5 +41,5 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
       with:
         source-repo: git@github.com:wgpsec/SafeWiki.git
-        destination-repo: git@e.coding.net:keac/safewiki/test.git
+        destination-repo: git@e.coding.net:keac/safewiki/safewiki.git
         
