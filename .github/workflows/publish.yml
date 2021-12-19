@@ -35,11 +35,3 @@ jobs:
         cname: wiki.wgpsec.org
         user_name: 'WgpSec Continuous Integration' 
         user_email: 'ci@wgpsec.org'  
-    - name: Mirror to Coding.net
-      uses: wearerequired/git-mirror-action@v1
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
-      with:
-        source-repo: git@github.com:wgpsec/SafeWiki.git
-        destination-repo: git@e.coding.net:keac/safewiki/safewiki.git
-        
