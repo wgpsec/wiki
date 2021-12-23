@@ -1,5 +1,5 @@
 ---
-title: XXE
+title: 【WEB】XXE
 ---
 # XXE
 

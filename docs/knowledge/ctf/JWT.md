@@ -1,12 +1,12 @@
 ---
-title: JWT
+title: 【WEB】JWT
 ---
 
 # JWT
 
 JWT 的通常加密方式有 RS 和 HS 
 
-将加密后的内容复制到 https://jwt.io/ 即可看到解密后的结果和加密方式
+将加密后的内容复制到 https://jwt.io/ 即可看到解密后的结果和加密方式
 
 其中 RS 是需要需要公私钥的，HS 是对称加密
 

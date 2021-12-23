@@ -1,5 +1,5 @@
 ---
-title: CBC
+title: 【CRYPTO】CBC
 ---
 
 # CBC

@@ -1,5 +1,5 @@
 ---
-title: 哈希长度拓展攻击
+title: 【WEB】哈希长度拓展攻击
 ---
 
 # 哈希长度扩展攻击
@@ -129,3 +129,24 @@ title: 哈希长度拓展攻击
 --quiet 仅输出必要的值
 ```
 
+
+
+题目示例：
+
+![img](/images/hash-leng-extension/27.png)
+
+>首先我们根据ctt函数反解出变量 s 为 adminadmin，即变量 role1 为 adminadmin
+>
+>然后 role 已知，url 解码后为 YVPweR3oRN;{nj32
+>
+>该类算法有一个特性，我们已知原文及密文和 key 长度，就可以直接在密文中替换内容，在不知道key的情况下生成新的密文
+
+![71](/images/hash-leng-extension/71.png)
+
+> 根据长度生成 role ，构造出符合规则的密文
+
+![72](/images/hash-leng-extension/72.png)
+
+> 长度不同的时候
+
+![73](/images/hash-leng-extension/73.png)
