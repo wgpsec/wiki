@@ -26,7 +26,8 @@ module.exports = [
             "/knowledge/ctf/ret2shellcode",
             "/knowledge/ctf/ret2syscall",
 			"/knowledge/ctf/re2libc",
-			"/knowledge/ctf/ret2csu"
+			"/knowledge/ctf/ret2csu",
+			"/knowledge/ctf/z3"
 		]
 	},
       {
