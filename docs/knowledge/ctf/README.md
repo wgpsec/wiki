@@ -6,4 +6,9 @@ title: 分类简介
 CTF相关文章
 
 ## 感谢以下师傅们的投稿
- - 狼组安全团队成员@**peiqi**
+ - **ALG**
+ - **Match**
+ - **peiqi**
+ - **Ricky**
+ - **sunqiz**
+ - **Verf1sh**
