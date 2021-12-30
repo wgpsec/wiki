@@ -17,6 +17,7 @@ module.exports = [
             "/knowledge/ctf/bypass-disable-function",
 			"/knowledge/ctf/JWT",
             "/knowledge/ctf/js-prototype-chain-pollution",
+            "/knowledge/ctf/JDBC-Unserialize",
             "/knowledge/ctf/SSTI",
 			"/knowledge/ctf/CBC",
 			"/knowledge/ctf/Hash-Leng-Extension",
