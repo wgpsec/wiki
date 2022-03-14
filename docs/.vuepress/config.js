@@ -26,10 +26,11 @@ module.exports = {
       platform: "github",
 
       // 其他的 Vssue 配置
-      owner: "wgpsec",
-      repo: "wiki",
+      owner: "keac",
+      repo: "wiki-talk",
       clientId: "GITHUB_ClientId",
-      clientSecret: "GITHUB_ClientSecret"
+      clientSecret: "GITHUB_ClientSecret",
+      autoCreateIssue: true
     }
   },
   markdown: {
