@@ -29,8 +29,7 @@ module.exports = {
       owner: "wgpsec",
       repo: "wiki",
       clientId: "GITHUB_ClientId",
-      clientSecret: "GITHUB_ClientSecret",
-      autoCreateIssue: true
+      clientSecret: "GITHUB_ClientSecret"
     }
   },
   markdown: {
