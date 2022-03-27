@@ -29,6 +29,9 @@ module.exports = [
 			"/knowledge/ctf/re2libc",
 			"/knowledge/ctf/ret2csu",
 			"/knowledge/ctf/UPX",
+			"/knowledge/ctf/basicheap",
+			"/knowledge/ctf/how2heap",
+			"/knowledge/ctf/iofile",
 			"/knowledge/ctf/32264",
 			"/knowledge/ctf/z3"
 		]
