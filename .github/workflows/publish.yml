@@ -25,13 +25,14 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-
     - run: yarn install
+    - run: sed -i 's/GITHUB_ClientId/${{ secrets.CLIENTID }}/g' docs/.vuepress/config.js
+    - run: sed -i 's/GITHUB_ClientSecret/${{ secrets.CLIENTSECRET }}/g' docs/.vuepress/config.js
     - run: yarn run build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        deploy_key: ${{ secrets.DEPLOY_KEY }}
         publish_dir: ./public
-        external_repository: wgpsec/SafeWiki  
-        cname: wiki.wgpsec.org
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         user_name: 'WgpSec Continuous Integration' 
         user_email: 'ci@wgpsec.org'  
+        cname: wiki.wgpsec.org

@@ -8,3 +8,5 @@ title: 分类简介
 
 ## 感谢以下师傅们的投稿
  - 狼组安全团队成员@**wintrysec（温酒）**
+
+<Vssue :title="$title" />
