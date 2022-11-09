@@ -100,7 +100,7 @@ footer: Powered by WgpSec Team | Copyright © 2014-2021 WgpSec 狼组安全团�
 
 ## 赞助者  
 
-【广告位招租】
+【广告位招租~】
 
 <p></p>
 
