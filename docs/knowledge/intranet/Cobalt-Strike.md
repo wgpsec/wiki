@@ -58,7 +58,7 @@ Cobalt Strike的客户端想连接到团队服务器需要知道三个信息：
 * 团队服务器的连接密码
 * （此项可选）决定Malleable C2工具的哪一个用户配置文件被用于团队服务器
 
-知道这些信息后，就可以使用脚本开启团队服务器了，值得注意的是Cobalt Strike团队服务器只能运行在Linux环境下。
+知道这些信息后，就可以使用脚本开启团队服务器了，值得注意的是**Cobalt Strike团队服务器只能运行在Linux环境下**。
 
 **开启团队服务器**
 
@@ -72,7 +72,7 @@ Cobalt Strike的客户端想连接到团队服务器需要知道三个信息：
 
 服务端开启后，就可以开启客户端进行连接了
 
-**连接到团队服务器**
+**客户端连接到团队服务器**
 
 在Linux下，直接运行start.sh脚本文件，输入团队服务器的IP、密码和自己的用户名进行连接
 
@@ -82,7 +82,7 @@ Cobalt Strike的客户端想连接到团队服务器需要知道三个信息：
 
 ![](https://teamssix.oss-cn-hangzhou.aliyuncs.com/cs2-3.png)
 
-在Windows下的连接方法也基本一致，直接双击start.bat文件，输入IP、密码、用户名，点击Connect即可
+在Windows下的连接方法也基本一致，直接双击**start.bat文件**打开客户端，输入IP、密码、用户名，点击Connect即可
 
 ![](https://teamssix.oss-cn-hangzhou.aliyuncs.com/cs2-4.png)
 
@@ -2834,13 +2834,18 @@ malleable 给了我们很多选项，比如：
 ```
 jitter		# 控制 beacon 默认回连的抖动因子
 maxdns		# 控制最大 DNS 请求，限制最大数量可以使 DNS Beacon 发送数据看起来正常些
-sleeptime	# 控制 beacon 的全部睡眠时间
+sleeptime	# 控制 beacon 的全部睡眠时间,即延迟时间。
 spawnto
 uri
 useragent	# 控制每次发送请求的 useragent
 ```
 
 `sleeptime` 和 `jitter` 两个选项是很重要的
+
+*流量隐藏*
+
+Cobalt Strike为了隐藏流量，不能做到像MSF一样即时响应。
+![](/images/cobalt-strike/Traffic-Hiding.png)
 
 **添加任意 headers**
 
