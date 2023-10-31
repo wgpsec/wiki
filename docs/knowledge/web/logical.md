@@ -124,7 +124,7 @@ HTTP协议传输时，是不传输此协议的。
 
 ### 漏洞检测
 
-**访问网站（未登录）：**获取cookie信息，获取Session ID
+**访问网站（未登录）：*获取cookie信息，获取Session ID
 
 **登录网站：**查看Cookie信息，获取Session ID
 

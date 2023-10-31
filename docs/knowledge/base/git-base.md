@@ -69,6 +69,25 @@ git config --global user.name "wintrysec"
 git config --global user.email "xksec@foxmail.com"
 ```
 只需要做一次这个设置，如果你传递了--global 选项，因为Git将总是会使用该信息来处理你在系统中所做的一切操作。如果你希望在一个特定的项目中使用不同的名称或e-mail地址，你可以在该项目中运行该命令而不要--global选项。总之--global为全局配置，不加为某个项目的特定配置。
+**代理**
+1.设置 Git 全局代理
+您可以使用以下命令设置 Git 的全局代理：
+```bash
+$ git config --global http.proxy http://proxy.example.com:8080
+$ git config --global https.proxy https://proxy.example.com:8080
+```
+如果您需要取消全局代理，可以使用以下命令：
+```bash
+$ git config --global --unset http.proxy
+$ git config --global --unset https.proxy
+
+```
+2.设置 Git 单个仓库代理
+如果您只需要为单个 Git 仓库设置代理，可以在该仓库的根目录中运行以下命令：
+```bash
+$ git config http.proxy http://proxy.example.com:8080
+$ git config https.proxy https://proxy.example.com:8080
+```
 ### 4个区域
 Git本地有4个工作区域：
 
@@ -112,7 +131,7 @@ git init #每个项目只一次
 ## Git文件操作
 ### 文件的四种状态
 
-**版本控制就是对文件的版本控制，要对文件进行修改、提交等操作，首**先要知道文件当前在什么状态，不然可能会提交了现在还不想提交的文件，或者要提交的文件没提交上。
+**版本控制就是对文件的版本控制，要对文件进行修改、提交等操作**，首先要知道文件当前在什么状态，不然可能会提交了现在还不想提交的文件，或者要提交的文件没提交上。
 
 - **Untracked**: 未跟踪, 此文件在文件夹中, 但并没有加入到git库, 不参与版本控制. 通过git add 状态变为Staged.
 - **Unmodify**: 文件已经入库, 未修改, 即版本库中的文件快照内容与文件夹中完全一致. 这种类型的文件有两种去处, 如果它被修改, 而变为Modified. 如果使用git rm移出版本库, 则成为Untracked文件
@@ -196,8 +215,15 @@ doc/*.txt    #会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
 ```
 
 ### 将远端文件下载到本地
-本地有仓库:pull即可
+本地已建立仓库:pull即可
 本地无仓库:用不了pull。应使用clone，将远端仓库直接clone来。
+
+### 恢复本地被删文件
+当误删本地文件，可以使用命令
+```bash
+git restore <file name>
+```
+请注意当文件名带有中文时，不要用git显示的转码文件名，应该直接用本来的中文名，否则恢复失败。
 ## 远程仓库
 
 **1.登陆github账号**
@@ -225,7 +251,7 @@ ssh-keygen -t rsa -C "xksec@foxmail.com"
 ```bash
 git remote add origin https://github.com/wintrysec/wintrysec.github.io.git
 ```
-
+origin：指定要推送到的远程仓库的名称。origin 是默认的远程仓库名称，如果您没有为当前分支配置其他远程仓库，那么 origin 就是默认值。
 **5.把所有推送到远端仓库**
 
 ```bash
@@ -253,6 +279,54 @@ error: src refspec master does not match any
 #请使用
 git status #以检查文件状态是否都是commited
 ```
+### 给开源项目提交pr
+从 GitHub 上下载的 ZIP 文件不包含 Git 的版本控制信息。若想提交pr，不能直接下载zip，必须按照以下流程。
+#### 1.fork
+您需要先在 GitHub 上对该项目进行 "Fork"。Fork 会在您的 GitHub 账户下创建该项目的一个副本。然后，您可以克隆这个副本并在其基础上进行修改。以下是详细步骤：
+转到项目的 GitHub 页面，点击右上角的 "Fork" 按钮。这将在您的 GitHub 账户下创建一个该项目的副本。
+#### 2.clone
+将项目克隆到本地，然后在新分支上进行修改。以下是详细的操作步骤：
+
+1.  首先，找到项目的 GitHub 页面，点击 "Code" 按钮，复制仓库的 HTTPS 或 SSH 地址。
+    
+2.  在本地计算机上克隆仓库：
+    
+    bash
+    
+    ```bash
+    git clone https://github.com/username/project.git
+    ```
+    
+    或使用 SSH：
+    
+    bash
+    
+    ```bash
+    git clone git@github.com:username/project.git
+    ```
+#### 3.创建一个新的分支
+ 创建一个新的分支，以便在其上进行更改。将 `<new_branch>` 替换为您的分支名称：
+    ```css
+    git checkout -b <new_branch>
+    ```
+#### 4.修改代码
+#### 5.文件操作
+    ```bash
+    git add .
+    git commit -m "Your commit message"
+    git push origin <new_branch>
+    ```
+
+##### 5.1  使用Github访问令牌（可选）
+ push至Github上，可能会要求输入访问令牌（Personal Access Token, 简称PAT）。若跳过输入访问令牌，则会要求输入Github账号密码，但即使输入正确，也会提示账号密码访问方式已被弃用，还是会提示输入访问令牌。这是因为 GitHub 在2021年8月13日已经移除了对密码认证的支持。
+1.  登录到您的 GitHub 账户。
+2.  点击右上角的个人头像，选择“Settings”（设置）。
+3.  在左侧菜单栏中，选择“Developer settings”（开发者设置）。
+4.  点击“Personal access tokens”（个人访问令牌）。
+5.  在您创建的访问令牌列表中找到相应的令牌，检查其权限范围。确保至少勾选了 "repo" 权限。
+#### 6.PR
+转到项目的 GitHub 页面，您应该会看到一个提示，询问是否要创建新的 Pull Request。点击 "Compare & pull request"。在打开的页面上填写 PR 的标题和描述，确保您详细说明了您所做的更改。完成后，点击 "Create pull request"。
+此时，您已成功提交了一个 PR。项目的维护者将收到通知，他们可以查看、讨论和合并您的更改。如果他们要求进行任何修改，只需在本地继续修改您的分支，然后再次推送，PR 将自动更新。
 ## 更新远程仓库
 
 ```bash
@@ -265,7 +339,7 @@ git push	#推送向远程仓库
 ```
 
 **分支管理**
-**分支在GIT中相对较难，分支就是科幻电影里面的平行宇宙，**如果两个平行宇宙互不干扰，那对现在的你也没啥影响。不过，在某个时间点，两个平行宇宙合并了，我们就需要处理一些问题了！
+**分支在GIT中相对较难，分支就是科幻电影里面的平行宇宙**，如果两个平行宇宙互不干扰，那对现在的你也没啥影响。不过，在某个时间点，两个平行宇宙合并了，我们就需要处理一些问题了！
 ```bash
 git branch			#查看当前所有本地分支
 git branch -r        # 列出所有远程分支。-r代表remote。
