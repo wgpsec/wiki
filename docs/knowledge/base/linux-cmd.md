@@ -9,7 +9,6 @@ cp、mv、rm、find / -name xx* 、du(计算目录容量)
 cat、more (逐页阅读,空格下一页，b返回上一页)
 head -n 2 xx.txt	#查看前两行
 tail -n 3 ca.*		#查看ca开头的文件的后3行
-grep	#正则匹配，搜索文本
 echo	#用于在shell中打印shell变量的值，或者直接输出指定的字符串
 ln -s 源文件 目标文件		#(-s软链接、不可删除源文件；硬链接时，源文件只能为文件不能是目录)
 
@@ -61,6 +60,8 @@ uptime	#查看登陆多久、多少用户，负载
 drwx-rwx-rwx #d代表目录、读、写、执行（4、2、1） -> user、group、other -> 所有者用户、组、其他用户的权限
 chmod #改变文件和目录权限
 chown #改变文件和目录所有者和组
+chmod +x Test.sh    #增加执行权限
+chmod -x Test.sh    #去除执行权限
 ```
 
 # 计划任务
